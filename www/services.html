@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Services - FurryCorner PH</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+    --blue:#7BB8F0;
+    --blue-dark:#5CA3E8;
+    --cream:#FCE3C0;
+    --cream-light:#FDEEDA;
+    --ink:#1F2430;
+    --white:#ffffff;
+    --muted:#8b929e;
+    --border:#e2e6ec;
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.5;
+}
+
+main{
+    background:var(--cream);
+    min-height:70vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand{
+    font-family:'Baloo 2',cursive;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+/* =====================================================
+   TOP NAVBAR
+===================================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    background:var(--white);
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:12px 40px;
+    box-shadow:0 2px 0 rgba(0,0,0,.04);
+    transition:box-shadow .25s ease;
+}
+
+.navbar.scrolled{
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.logo img{
+    width:44px;
+    height:44px;
+    object-fit:contain;
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.top-search{
+    flex:1;
+    height:44px;
+    display:flex;
+    align-items:center;
+    background:#f5f6f7;
+    border:1.5px solid #e5e7eb;
+    border-radius:8px;
+    padding:0 14px;
+    transition:.2s ease;
+}
+
+.top-search:focus-within{
+    background:white;
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(123,184,240,.15);
+}
+
+.top-search input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    margin-left:0;
+    margin-right:10px;
+    font-family:'Nunito',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+}
+
+.top-search input::placeholder{
+    color:#9ca3af;
+}
+
+.top-search svg{
+    width:20px;
+    height:20px;
+    color:#7d8490;
+    flex-shrink:0;
+    order:2;
+}
+
+/* =====================================================
+   SERVICES CONTAINER
+===================================================== */
+
+.services-container{
+    max-width:1400px;
+    margin:0 auto;
+    padding:30px 40px 70px;
+}
+
+/* =====================================================
+   SERVICE HERO
+===================================================== */
+
+.service-hero{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:calc(100% + 80px);
+    aspect-ratio:16 / 9;
+    margin:0 -40px 34px;
+    overflow:hidden;
+    background:#dfe8ed;
+}
+
+.service-hero img{
+    width:100%;
+    height:100%;
+    max-width:none;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+    filter:brightness(.90);
+}
+
+.service-hero-title{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-90%);
+    width:68%;
+    margin:0;
+    z-index:2;
+    font-family:'Nunito',sans-serif;
+    font-size:28px;
+    line-height:1.25;
+    font-weight:800;
+    color:#fff;
+    text-align:center;
+    text-shadow:0 2px 8px rgba(0,0,0,.4);
+    pointer-events:none;
+}
+
+/* =====================================================
+   FILTER BAR
+===================================================== */
+
+.tab-bar{
+    width:100%;
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    justify-content:flex-start;
+    gap:10px;
+    padding:4px 2px 10px;
+    margin:0 auto 24px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+}
+
+.tab-bar::-webkit-scrollbar{
+    display:none;
+}
+
+.tab-btn{
+    flex:0 0 auto;
+    white-space:nowrap;
+    padding:12px 26px;
+    border-radius:999px;
+    border:1.5px solid var(--border);
+    background:var(--white);
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    font-size:14.5px;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .2s ease,
+                border-color .2s ease,
+                color .2s ease;
+}
+
+.tab-btn:hover{
+    border-color:var(--blue);
+}
+
+.tab-btn.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:var(--white);
+}
+
+/* =====================================================
+   SERVICE GRID
+===================================================== */
+
+.services-grid{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+}
+
+.services-grid.hidden{
+    display:none;
+}
+
+/* =====================================================
+   SERVICE CARD
+===================================================== */
+
+.service-card{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    background:white;
+    border:1px solid #e7e9ee;
+    border-radius:16px;
+    overflow:hidden;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 3px 12px rgba(0,0,0,.045);
+    transition:transform .2s ease,
+                box-shadow .2s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+}
+
+/* =====================================================
+   SERVICE IMAGE
+===================================================== */
+
+.service-image{
+    width:100%;
+    height:300px;
+    background:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.service-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* =====================================================
+   SERVICE BODY
+===================================================== */
+
+.service-body{
+    width:100%;
+    box-sizing:border-box;
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+}
+
+/* =====================================================
+   SERVICE INFO
+===================================================== */
+
+.service-info{
+    width:100%;
+    min-width:0;
+    margin:0 0 16px;
+    padding:0 0 14px;
+    border-bottom:1px solid #e5e7eb;
+    box-sizing:border-box;
+}
+
+.service-name{
+    font-size:17px;
+    font-weight:800;
+    color:#252a31;
+    line-height:1.25;
+    margin-bottom:7px;
+    overflow-wrap:anywhere;
+}
+
+.service-meta{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    font-size:13px;
+    font-weight:700;
+    color:#6f7782;
+}
+
+.service-meta span:first-child{
+    min-width:0;
+}
+
+.service-meta span:last-child{
+    flex:0 0 auto;
+    color:#252a31;
+    font-size:14px;
+    font-weight:800;
+}
+
+/* =====================================================
+   BOOK BUTTON
+===================================================== */
+
+.book-btn{
+    width:100%;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    border:none;
+    border-radius:8px;
+    background:var(--blue);
+    color:white;
+    font-family:'Nunito',sans-serif;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    transition:background .2s ease;
+}
+
+.book-btn:hover{
+    background:var(--blue-dark);
+}
+
+/* =====================================================
+   BOOKING MODAL
+===================================================== */
+
+.booking-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(31,36,48,.5);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.booking-backdrop.open{
+    display:flex;
+}
+
+.booking-modal{
+    background:var(--white);
+    width:100%;
+    max-width:460px;
+    border-radius:16px;
+    padding:30px 30px 28px;
+    box-shadow:0 24px 60px rgba(0,0,0,.25);
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.booking-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.booking-service-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.booking-service-thumb{
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--cream-light);
+    flex-shrink:0;
+}
+
+.booking-service-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.booking-service-name{
+    font-weight:800;
+    font-size:16px;
+}
+
+.booking-service-price{
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--blue-dark);
+}
+
+.booking-close{
+    background:none;
+    border:none;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.booking-close svg{
+    width:22px;
+    height:22px;
+    color:var(--ink);
+}
+
+.booking-label{
+    font-size:12px;
+    font-weight:800;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-bottom:8px;
+    display:block;
+}
+
+.booking-field{
+    width:100%;
+    padding:13px 16px;
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    font-family:'Nunito',sans-serif;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink);
+    outline:none;
+    margin-bottom:18px;
+}
+
+.booking-field:focus{
+    border-color:var(--blue);
+}
+
+.time-slots{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.time-slot{
+    padding:10px 6px;
+    border-radius:8px;
+    border:1.5px solid var(--border);
+    background:var(--white);
+    font-family:'Nunito',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    text-align:center;
+    transition:background .2s ease,
+                border-color .2s ease,
+                color .2s ease;
+}
+
+.time-slot:hover{
+    border-color:var(--blue);
+}
+
+.time-slot.active{
+    background:var(--cream-light);
+    border-color:var(--blue);
+    color:var(--blue-dark);
+}
+
+.booking-submit{
+    width:100%;
+    height:50px;
+    border-radius:10px;
+    border:none;
+    background:var(--blue);
+    color:var(--white);
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    font-size:15.5px;
+    cursor:pointer;
+    margin-top:4px;
+}
+
+.booking-submit:hover{
+    background:var(--blue-dark);
+}
+
+.booking-submit:disabled{
+    background:#cbd2db;
+    cursor:not-allowed;
+}
+
+.booking-note-text{
+    font-size:12.5px;
+    color:var(--muted);
+    font-weight:600;
+    margin-top:12px;
+    text-align:center;
+}
+
+.booking-confirmed{
+    text-align:center;
+    padding:10px 0 6px;
+}
+
+.booking-confirmed svg{
+    width:56px;
+    height:56px;
+    color:#3fb27f;
+    margin:0 auto 16px;
+}
+
+.booking-confirmed h3{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.booking-confirmed p{
+    font-size:14.5px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+.booking-confirmed .summary{
+    background:var(--cream-light);
+    border-radius:10px;
+    padding:14px 16px;
+    margin:18px 0;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+}
+
+.booking-confirmed .summary div{
+    margin-bottom:4px;
+}
+
+.booking-done-btn{
+    width:100%;
+    height:48px;
+    border-radius:10px;
+    border:none;
+    background:var(--blue);
+    color:var(--white);
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.booking-done-btn:hover{
+    background:var(--blue-dark);
+}
+
+/* =====================================================
+   CART ALERT
+===================================================== */
+
+.cart-alert{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.85);
+    background:white;
+    width:360px;
+    max-width:90vw;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 15px 45px rgba(0,0,0,.20);
+    border:2px solid var(--blue);
+    z-index:5000;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s ease;
+    text-align:center;
+}
+
+.cart-alert.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.cart-alert-icon{
+    width:55px;
+    height:55px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    background:var(--blue);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    font-weight:800;
+}
+
+.cart-alert h3{
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.cart-alert p{
+    font-size:14px;
+    font-weight:600;
+    opacity:.7;
+}
+
+/* =====================================================
+   CART OVERLAY
+===================================================== */
+
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(31,36,48,.35);
+    backdrop-filter:blur(2px);
+    z-index:3000;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s ease;
+}
+
+.cart-overlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+/* =====================================================
+   CART DRAWER
+===================================================== */
+
+.cart-drawer{
+    position:fixed;
+    top:0;
+    right:0;
+    width:390px;
+    max-width:90vw;
+    height:100vh;
+    background:var(--cream-light);
+    z-index:3001;
+    display:flex;
+    flex-direction:column;
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    box-shadow:-8px 0 30px rgba(0,0,0,.15);
+}
+
+.cart-drawer.open{
+    transform:translateX(0);
+}
+
+.cart-drawer-header{
+    background:var(--blue-dark);
+    color:white;
+    padding:22px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.cart-drawer-header h2{
+    font-size:24px;
+}
+
+.cart-close{
+    width:36px;
+    height:36px;
+    border:2px solid rgba(255,255,255,.7);
+    border-radius:50%;
+    background:transparent;
+    color:white;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+}
+
+.cart-drawer-body{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.drawer-cart-item{
+    background:white;
+    border-radius:14px;
+    padding:12px;
+    margin-bottom:12px;
+    display:flex;
+    gap:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+
+.drawer-cart-item img{
+    width:70px;
+    height:70px;
+    border-radius:10px;
+    background:var(--blue);
+    object-fit:contain;
+}
+
+.drawer-item-info{
+    flex:1;
+    min-width:0;
+}
+
+.drawer-item-name{
+    font-weight:800;
+    font-size:14px;
+    margin-bottom:4px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.drawer-item-price{
+    color:var(--blue-dark);
+    font-weight:800;
+    font-size:14px;
+}
+
+.drawer-item-quantity{
+    font-size:13px;
+    font-weight:700;
+    opacity:.7;
+}
+
+.drawer-empty{
+    min-height:300px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+}
+
+.drawer-empty h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.drawer-empty p{
+    font-size:14px;
+    opacity:.7;
+}
+
+.cart-drawer-footer{
+    background:white;
+    padding:20px;
+    border-top:1px solid #eee;
+}
+
+.cart-total-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+    font-size:16px;
+    font-weight:800;
+}
+
+.cart-total-row strong{
+    color:var(--blue-dark);
+}
+
+.view-cart-btn{
+    width:100%;
+    height:44px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Nunito',sans-serif;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+    background:var(--blue-dark);
+    color:white;
+}
+
+/* =====================================================
+   MOBILE BOTTOM NAVIGATION
+===================================================== */
+
+.mobile-bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:68px;
+    background:var(--white);
+    border-top:1px solid #e5e5e5;
+    box-shadow:0 -4px 15px rgba(0,0,0,.08);
+    z-index:4000;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    align-items:stretch;
+    padding:0;
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item{
+    width:100%;
+    min-width:0;
+    height:68px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    color:#7d8490;
+    font-family:'Nunito',sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    line-height:1;
+    text-decoration:none;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    position:relative;
+    padding:8px 2px;
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item svg{
+    width:22px;
+    height:22px;
+    display:block;
+    flex-shrink:0;
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item span:not(.bottom-notif-badge){
+    display:block;
+    width:100%;
+    text-align:center;
+    line-height:1;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.mobile-bottom-nav .bottom-nav-item.active{
+    color:var(--blue-dark);
+}
+
+.mobile-bottom-nav .bottom-nav-item:hover{
+    color:#7d8490;
+}
+
+.mobile-bottom-nav .bottom-nav-item.active:hover{
+    color:var(--blue-dark);
+}
+
+/* =====================================================
+   NOTIFICATION BADGE
+   SAME POSITION AS NOTIF.HTML
+===================================================== */
+
+.bottom-notif-badge{
+    position:absolute;
+    top:6px;
+    right:50%;
+    transform:translateX(12px);
+
+    min-width:16px;
+    height:16px;
+    padding:0 4px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#e0685f;
+    color:white;
+
+    font-family:'Nunito',sans-serif;
+    font-size:9px;
+    font-weight:800;
+    line-height:1;
+
+    z-index:2;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1000px){
+
+    .services-container{
+        padding-left:25px;
+        padding-right:25px;
+    }
+
+    .services-grid{
+        width:100%;
+        align-items:center;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    body{
+        padding-bottom:68px;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+        position:sticky;
+        top:0;
+        padding:10px 12px;
+        gap:8px;
+        height:64px;
+    }
+
+    .logo img{
+        width:38px;
+        height:38px;
+    }
+
+    .top-search{
+        height:40px;
+        padding:0 11px;
+        border-radius:7px;
+    }
+
+    .top-search svg{
+        width:18px;
+        height:18px;
+    }
+
+    .top-search input{
+        font-size:13px;
+        margin-left:0;
+        margin-right:7px;
+    }
+
+    /* SERVICES */
+
+    .services-container{
+        width:100%;
+        box-sizing:border-box;
+        padding:0 14px 35px;
+        overflow-x:hidden;
+    }
+
+    /* HERO */
+
+    .service-hero{
+        width:calc(100% + 28px);
+        margin-left:-14px;
+        margin-right:-14px;
+        margin-bottom:24px;
+    }
+
+    .service-hero img{
+        width:100%;
+        max-width:430px;
+    }
+
+    .service-hero-title{
+        top:50%;
+        width:62%;
+        font-size:30px;
+        line-height:1.2;
+    }
+
+    /* FILTER */
+
+    .tab-bar{
+        width:calc(100% + 28px);
+        margin-left:-14px;
+        margin-right:-14px;
+        padding-left:14px;
+        padding-right:14px;
+        gap:8px;
+        margin-bottom:18px;
+    }
+
+    .tab-btn{
+        padding:9px 16px;
+        font-size:13px;
+        flex:0 0 auto;
+    }
+
+    /* SERVICE GRID */
+
+    .services-grid{
+        width:100%;
+        max-width:500px;
+        grid-template-columns:1fr;
+        gap:16px;
+        justify-items:stretch;
+    }
+
+    .service-card{
+        width:100%;
+        max-width:500px;
+        min-width:0;
+        margin:0 auto;
+        border-radius:12px;
+    }
+
+    .service-image{
+        height:220px;
+    }
+
+    .service-body{
+        padding:14px 14px 15px;
+    }
+
+    .service-info{
+        margin-bottom:13px;
+        padding-bottom:12px;
+    }
+
+    .service-name{
+        font-size:15px;
+        margin-bottom:6px;
+    }
+
+    .service-meta{
+        font-size:11.5px;
+        gap:8px;
+    }
+
+    .service-meta span:last-child{
+        font-size:13px;
+    }
+
+    .book-btn{
+        height:38px;
+        font-size:12px;
+    }
+
+    /* CART */
+
+    .cart-drawer{
+        width:100%;
+        max-width:100%;
+    }
+
+    /* MOBILE NAV */
+
+    .mobile-bottom-nav{
+        height:68px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item{
+        height:68px;
+        font-size:10px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item svg{
+        width:20px;
+        height:20px;
+    }
+
+    
+}
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:420px){
+
+    .services-container{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .tab-bar{
+        width:calc(100% + 24px);
+        margin-left:-12px;
+        margin-right:-12px;
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .services-grid{
+        width:100%;
+        max-width:360px;
+        margin-left:auto;
+        margin-right:auto;
+        gap:14px;
+    }
+
+    .service-card{
+        width:100%;
+        max-width:360px;
+    }
+
+    .service-image{
+        height:190px;
+    }
+
+    .service-body{
+        padding:12px;
+    }
+
+    .service-name{
+        font-size:14px;
+    }
+
+    .service-meta{
+        font-size:10.5px;
+    }
+
+    .service-meta span:last-child{
+        font-size:12px;
+    }
+
+    .book-btn{
+        height:36px;
+        font-size:11px;
+    }
+
+    body{
+        padding-bottom:64px;
+    }
+
+    .mobile-bottom-nav{
+        height:64px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item{
+        height:64px;
+        font-size:9.5px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item svg{
+        width:20px;
+        height:20px;
+    }
+
+    .service-hero-title{
+        top:50%;
+        width:64%;
+        font-size:20px;
+    }
+
+    .service-hero img{
+        width:100%;
+        max-width:none;
+    }
+
+   
+}
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:701px){
+
+    .mobile-bottom-nav{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     TOP NAVBAR
+===================================================== -->
+
+<nav class="navbar" id="navbar">
+
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="FurryCorner PH">
+    </a>
+
+    <div class="top-search">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for any services..."
+            autocomplete="off"
+        >
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65"
+            ></line>
+        </svg>
+
+    </div>
+
+</nav>
+
+<!-- =====================================================
+     CART ALERT
+===================================================== -->
+
+<div class="cart-alert" id="cartAlert">
+
+    <div class="cart-alert-icon">
+        ✓
+    </div>
+
+    <h3>
+        Added to Cart!
+    </h3>
+
+    <p id="cartAlertText">
+        Product has been added to your cart.
+    </p>
+
+</div>
+
+<!-- =====================================================
+     CART OVERLAY
+===================================================== -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+></div>
+
+<!-- =====================================================
+     CART DRAWER
+===================================================== -->
+
+<aside
+    class="cart-drawer"
+    id="cartDrawer"
+>
+
+    <div class="cart-drawer-header">
+
+        <h2>
+            Cart
+        </h2>
+
+        <button
+            class="cart-close"
+            id="cartClose"
+            aria-label="Close cart"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div
+        class="cart-drawer-body"
+        id="cartDrawerBody"
+    ></div>
+
+    <div class="cart-drawer-footer">
+
+        <div class="cart-total-row">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="drawerTotal">
+                ₱0.00
+            </strong>
+
+        </div>
+
+        <a
+            href="cart.html"
+            class="view-cart-btn"
+        >
+            View Cart
+        </a>
+
+    </div>
+
+</aside>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+    <div class="services-container">
+
+        <!-- SERVICE HERO -->
+
+        <section
+            class="service-hero"
+            aria-label="FurryCorner PH healthcare services"
+        >
+
+            <h1 class="service-hero-title">
+                One Stop for All Their Healthcare Needs
+            </h1>
+
+            <img
+                src="images/service-hero.jpg"
+                alt="FurryCorner PH healthcare services"
+            >
+
+        </section>
+
+        <!-- FILTER BAR -->
+
+        <div
+            class="tab-bar"
+            id="tabBar"
+        >
+
+            <button
+                class="tab-btn active"
+                data-category="All"
+            >
+                All Services
+            </button>
+
+            <button
+                class="tab-btn"
+                data-category="Grooming"
+            >
+                Grooming
+            </button>
+
+            <button
+                class="tab-btn"
+                data-category="Care"
+            >
+                Care
+            </button>
+
+            <button
+                class="tab-btn"
+                data-category="Boarding"
+            >
+                Boarding
+            </button>
+
+        </div>
+
+        <!-- SERVICE GRIDS -->
+
+        <div id="serviceGridContainer"></div>
+
+    </div>
+
+</main>
+
+<!-- =====================================================
+     BOOKING MODAL
+===================================================== -->
+
+<div
+    class="booking-backdrop"
+    id="bookingBackdrop"
+>
+
+    <div
+        class="booking-modal"
+        id="bookingModal"
+    ></div>
+
+</div>
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="mobile-bottom-nav">
+
+    <!-- HOME -->
+
+    <a
+        href="index.html"
+        class="bottom-nav-item"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+
+            <path d="M3 10.5L12 3l9 7.5"></path>
+
+            <path d="M5 9.5V21h14V9.5"></path>
+
+            <path d="M9 21v-6h6v6"></path>
+
+        </svg>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+    <!-- SERVICES -->
+
+    <a
+        href="services.html"
+        class="bottom-nav-item active"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+
+            <path d="M5 8h14l1 13H4L5 8z"></path>
+
+            <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+        </svg>
+
+        <span>
+            Services
+        </span>
+
+    </a>
+
+    <!-- NOTIFICATIONS -->
+
+    <a
+        href="notif.html"
+        class="bottom-nav-item"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+
+            <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+
+            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+
+        </svg>
+
+        <!-- RED NOTIFICATION COUNT -->
+
+        <span
+            class="bottom-notif-badge"
+            id="bottomNotifBadge"
+        >
+            1
+        </span>
+
+        <span>
+            Notifications
+        </span>
+
+    </a>
+
+    <!-- ME -->
+
+    <a
+        href="profile.html"
+        class="bottom-nav-item"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+
+            <circle
+                cx="12"
+                cy="8"
+                r="4"
+            ></circle>
+
+            <path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>
+
+        </svg>
+
+        <span>
+            Me
+        </span>
+
+    </a>
+
+</nav>
+
+<script>
+
+/* =====================================================
+   NAVBAR SCROLL
+===================================================== */
+
+const navbar =
+    document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+
+    navbar.classList.toggle(
+        'scrolled',
+        window.scrollY > 10
+    );
+
+});
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+const searchInput =
+    document.getElementById('searchInput');
+
+let searchQuery = '';
+
+searchInput.addEventListener('input', () => {
+
+    searchQuery =
+        searchInput.value.trim().toLowerCase();
+
+    renderServiceGrids();
+
+});
+
+/* =====================================================
+   CART
+===================================================== */
+
+function getCart(){
+
+    return JSON.parse(
+        localStorage.getItem('cart')
+    ) || [];
+
+}
+
+/* =====================================================
+   PESO FORMAT
+===================================================== */
+
+function peso(number){
+
+    return '₱' +
+        Number(number).toLocaleString(
+            'en-PH',
+            {
+                minimumFractionDigits:2
+            }
+        );
+
+}
+
+/* =====================================================
+   CART DRAWER
+===================================================== */
+
+const cartDrawer =
+    document.getElementById('cartDrawer');
+
+const cartOverlay =
+    document.getElementById('cartOverlay');
+
+const cartClose =
+    document.getElementById('cartClose');
+
+const cartDrawerBody =
+    document.getElementById('cartDrawerBody');
+
+const drawerTotal =
+    document.getElementById('drawerTotal');
+
+function openCartDrawer(){
+
+    renderCartDrawer();
+
+    cartDrawer.classList.add('open');
+
+    cartOverlay.classList.add('open');
+
+}
+
+function closeCartDrawer(){
+
+    cartDrawer.classList.remove('open');
+
+    cartOverlay.classList.remove('open');
+
+}
+
+cartClose.addEventListener(
+    'click',
+    closeCartDrawer
+);
+
+cartOverlay.addEventListener(
+    'click',
+    closeCartDrawer
+);
+
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCartDrawer(){
+
+    const cart = getCart();
+
+    if(cart.length === 0){
+
+        cartDrawerBody.innerHTML = `
+
+            <div class="drawer-empty">
+
+                <h3>
+                    Your cart is empty
+                </h3>
+
+                <p>
+                    Add some products to your cart to see them here.
+                </p>
+
+            </div>
+
+        `;
+
+        drawerTotal.textContent =
+            '₱0.00';
+
+        return;
+
+    }
+
+    let total = 0;
+
+    cartDrawerBody.innerHTML =
+        cart.map(item => {
+
+            total +=
+                Number(item.price) *
+                Number(item.quantity);
+
+            return `
+
+                <div class="drawer-cart-item">
+
+                    <img
+                        src="images/product-${item.id}.png"
+                        alt="${item.name}"
+                    >
+
+                    <div class="drawer-item-info">
+
+                        <div class="drawer-item-name">
+                            ${item.name}
+                        </div>
+
+                        <div class="drawer-item-price">
+                            ${peso(item.price)}
+                        </div>
+
+                        <div class="drawer-item-quantity">
+                            Quantity: ${item.quantity}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join('');
+
+    drawerTotal.textContent =
+        peso(total);
+
+}
+
+/* =====================================================
+   SERVICES DATA FROM DATABASE
+===================================================== */
+
+let services = [];
+
+
+/* =====================================================
+   LOAD SERVICES
+===================================================== */
+
+async function loadServices(){
+
+    try{
+
+        const response =
+            await fetch(
+                'http://localhost/furrycorner_api/getServices.php'
+            );
+            
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            'Services from database:',
+            data
+        );
+
+
+        if(!data.success){
+
+            console.error(
+                'Failed to load services:',
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        services =
+            data.services || [];
+
+
+        renderServiceGrids();
+
+
+    }catch(error){
+
+        console.error(
+            'Service loading error:',
+            error
+        );
+
+    }
+
+}
+
+const CATEGORIES = [
+    'All',
+    'Grooming',
+    'Care',
+    'Boarding'
+];
+
+const serviceGridContainer =
+    document.getElementById(
+        'serviceGridContainer'
+    );
+
+const tabBar =
+    document.getElementById('tabBar');
+
+let activeCategory = 'All';
+
+/* =====================================================
+   RENDER SERVICES
+===================================================== */
+
+function renderServiceGrids(){
+
+    serviceGridContainer.innerHTML =
+
+        CATEGORIES.map(category => {
+
+            const items =
+                services.filter(service => {
+
+                    const matchesCategory =
+                        category === 'All' ||
+                        service.category === category;
+
+                    const matchesSearch =
+                        service.name
+                            .toLowerCase()
+                            .includes(searchQuery);
+
+                    return (
+                        matchesCategory &&
+                        matchesSearch
+                    );
+
+                });
+
+            return `
+
+                <div
+                    class="services-grid ${
+                        category === activeCategory
+                            ? ''
+                            : 'hidden'
+                    }"
+                    data-category-grid="${category}"
+                >
+
+                    ${
+                        items.length
+                        ?
+
+                        items.map(service => `
+
+                            <article class="service-card">
+
+                                <div class="service-image">
+
+                                    <img
+                                        src="${service.image}"
+                                        alt="${service.name}"
+                                    >
+
+                                </div>
+
+                                <div class="service-body">
+
+                                    <div class="service-info">
+
+                                        <div class="service-name">
+                                            ${service.name}
+                                        </div>
+
+                                        <div class="service-meta">
+
+                                            <span>
+                                                Duration: ${service.duration}
+                                            </span>
+
+                                            <span>
+                                                ${service.price}
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <button
+                                        class="book-btn"
+                                        data-service-id="${service.id}"
+                                    >
+                                        Book Now
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+                        `).join('')
+
+                        :
+
+                        `
+
+                        <p
+                            style="
+                                grid-column:1/-1;
+                                text-align:center;
+                                font-weight:bold;
+                                padding:30px;
+                            "
+                        >
+                            No services found.
+                        </p>
+
+                        `
+
+                    }
+
+                </div>
+
+            `;
+
+        }).join('');
+
+}
+
+loadServices();
+
+/* =====================================================
+   CATEGORY FILTER
+===================================================== */
+
+tabBar.addEventListener(
+    'click',
+    event => {
+
+        const btn =
+            event.target.closest('.tab-btn');
+
+        if(!btn) return;
+
+        document
+            .querySelectorAll('.tab-btn')
+            .forEach(button => {
+
+                button.classList.remove(
+                    'active'
+                );
+
+            });
+
+        btn.classList.add('active');
+
+        activeCategory =
+            btn.dataset.category;
+
+        renderServiceGrids();
+
+    }
+);
+
+/* =====================================================
+   BOOKING MODAL
+===================================================== */
+
+const bookingBackdrop =
+    document.getElementById(
+        'bookingBackdrop'
+    );
+
+const bookingModal =
+    document.getElementById(
+        'bookingModal'
+    );
+
+let selectedTime = '';
+
+function todayISO(){
+
+    const d = new Date();
+
+    return d
+        .toISOString()
+        .split('T')[0];
+
+}
+
+function renderBookingForm(service){
+
+    selectedTime = '';
+
+    bookingModal.innerHTML = `
+
+        <div class="booking-header">
+
+            <div class="booking-service-info">
+
+                <div class="booking-service-thumb">
+
+                    <img
+                        src="${service.image}"
+                        alt="${service.name}"
+                    >
+
+                </div>
+
+                <div>
+
+                    <div class="booking-service-name">
+                        ${service.name}
+                    </div>
+
+                    <div class="booking-service-price">
+                        ${service.price}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                class="booking-close"
+                id="bookingCloseBtn"
+                aria-label="Close"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+
+                    <line
+                        x1="18"
+                        y1="6"
+                        x2="6"
+                        y2="18"
+                    />
+
+                    <line
+                        x1="6"
+                        y1="6"
+                        x2="18"
+                        y2="18"
+                    />
+
+                </svg>
+
+            </button>
+
+        </div>
+
+        <label class="booking-label">
+            Pet name
+        </label>
+
+        <input
+            class="booking-field"
+            type="text"
+            id="petNameField"
+            placeholder="e.g. Bella"
+        >
+
+        <label class="booking-label">
+            Choose a date
+        </label>
+
+        <input
+            class="booking-field"
+            type="date"
+            id="bookingDateField"
+            min="${todayISO()}"
+        >
+
+        <label class="booking-label">
+            Choose a time
+        </label>
+
+        <div
+            class="time-slots"
+            id="timeSlots"
+        >
+
+            <button
+                class="time-slot"
+                data-time="9:00 AM"
+                type="button"
+            >
+                9:00 AM
+            </button>
+
+            <button
+                class="time-slot"
+                data-time="11:00 AM"
+                type="button"
+            >
+                11:00 AM
+            </button>
+
+            <button
+                class="time-slot"
+                data-time="1:00 PM"
+                type="button"
+            >
+                1:00 PM
+            </button>
+
+            <button
+                class="time-slot"
+                data-time="3:00 PM"
+                type="button"
+            >
+                3:00 PM
+            </button>
+
+            <button
+                class="time-slot"
+                data-time="5:00 PM"
+                type="button"
+            >
+                5:00 PM
+            </button>
+
+            <button
+                class="time-slot"
+                data-time="7:00 PM"
+                type="button"
+            >
+                7:00 PM
+            </button>
+
+        </div>
+
+        <button
+            class="booking-submit"
+            id="confirmBookingBtn"
+            type="button"
+            disabled
+        >
+            Confirm Booking
+        </button>
+
+        <div class="booking-note-text">
+            You'll receive a confirmation once your booking is reviewed.
+        </div>
+
+    `;
+
+    const dateField =
+        document.getElementById(
+            'bookingDateField'
+        );
+
+    const petNameField =
+        document.getElementById(
+            'petNameField'
+        );
+
+    const confirmBtn =
+        document.getElementById(
+            'confirmBookingBtn'
+        );
+
+    const timeSlots =
+        document.getElementById(
+            'timeSlots'
+        );
+
+    function validate(){
+
+        confirmBtn.disabled = !(
+            petNameField.value.trim() &&
+            dateField.value &&
+            selectedTime
+        );
+
+    }
+
+    petNameField.addEventListener(
+        'input',
+        validate
+    );
+
+    dateField.addEventListener(
+        'change',
+        validate
+    );
+
+    timeSlots.addEventListener(
+        'click',
+        event => {
+
+            const slot =
+                event.target.closest(
+                    '.time-slot'
+                );
+
+            if(!slot) return;
+
+            timeSlots
+                .querySelectorAll('.time-slot')
+                .forEach(button => {
+
+                    button.classList.remove(
+                        'active'
+                    );
+
+                });
+
+            slot.classList.add('active');
+
+            selectedTime =
+                slot.dataset.time;
+
+            validate();
+
+        }
+    );
+
+    document
+        .getElementById(
+            'bookingCloseBtn'
+        )
+        .addEventListener(
+            'click',
+            closeBooking
+        );
+confirmBtn.addEventListener(
+    'click',
+    async () => {
+
+        /* =========================================
+           GET LOGGED-IN USER
+        ========================================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    'loggedInUser'
+                )
+            );
+
+        console.log(
+            'Logged-in user for booking:',
+            loggedUser
+        );
+
+
+        if(!loggedUser){
+
+            alert(
+                'Please sign in to book a service.'
+            );
+
+            return;
+
+        }
+
+
+        const userId =
+            Number(
+                loggedUser.user_id ||
+                loggedUser.id
+            );
+
+
+        if(!userId){
+
+            alert(
+                'Unable to identify your logged-in account.'
+            );
+
+            return;
+
+        }
+
+
+        /* =========================================
+           GET BOOKING INFORMATION
+        ========================================= */
+
+        const petName =
+            petNameField.value.trim();
+
+        const bookingDate =
+            dateField.value;
+
+        const bookingTime =
+            selectedTime;
+
+
+        /* =========================================
+           CUSTOMER INFORMATION
+        ========================================= */
+
+        const customerName =
+            (
+                loggedUser.firstName ||
+                ''
+            ) +
+            ' ' +
+            (
+                loggedUser.lastName ||
+                ''
+            );
+
+
+        const customerContact =
+            loggedUser.email ||
+            '';
+
+
+        /* =========================================
+           BOOKING DATA
+        ========================================= */
+
+        const bookingData = {
+
+            user_id:
+                userId,
+
+            service_id:
+                Number(
+                    service.id.replace(
+                        /\D/g,
+                        ''
+                    )
+                ),
+
+            pet_name:
+                petName,
+
+            customer_name:
+                customerName.trim(),
+
+            customer_contact:
+                customerContact,
+
+            booking_date:
+                bookingDate,
+
+            booking_time:
+                bookingTime
+
+        };
+
+
+        console.log(
+            'SENDING BOOKING DATA:',
+            bookingData
+        );
+
+
+        /* =========================================
+           DISABLE BUTTON
+        ========================================= */
+
+        confirmBtn.disabled =
+            true;
+
+        confirmBtn.textContent =
+            'Booking...';
+
+
+        try {
+
+            /* =====================================
+               SEND TO DATABASE
+            ===================================== */
+
+            const response =
+                await fetch(
+                    'http://localhost/furrycorner_api/createBooking.php',
+                    {
+                        method:'POST',
+
+                        headers:{
+                            'Content-Type':
+                                'application/json',
+
+                            'Accept':
+                                'application/json'
+                        },
+
+                        body:
+                            JSON.stringify(
+                                bookingData
+                            )
+                    }
+                );
+
+
+            const responseText =
+                await response.text();
+
+
+            console.log(
+                'RAW BOOKING RESPONSE:',
+                responseText
+            );
+
+
+            let data;
+
+            try {
+
+                data =
+                    JSON.parse(
+                        responseText
+                    );
+
+            } catch(error){
+
+                console.error(
+                    'Invalid server response:',
+                    responseText
+                );
+
+                throw new Error(
+                    'Invalid server response'
+                );
+
+            }
+
+
+            console.log(
+                'createBooking.php response:',
+                data
+            );
+
+
+            /* =====================================
+               SUCCESS
+            ===================================== */
+
+            if(data.success){
+
+                console.log(
+                    'Booking created:',
+                    data.booking_id
+                );
+
+
+                renderConfirmation(
+                    service,
+                    petName,
+                    bookingDate,
+                    bookingTime
+                );
+
+            }
+
+            else{
+
+                alert(
+                    data.message ||
+                    'Unable to create booking.'
+                );
+
+
+                confirmBtn.disabled =
+                    false;
+
+                confirmBtn.textContent =
+                    'Confirm Booking';
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(
+                'Booking error:',
+                error
+            );
+
+
+            alert(
+                'Unable to connect to the server. Please try again.'
+            );
+
+
+            confirmBtn.disabled =
+                false;
+
+            confirmBtn.textContent =
+                'Confirm Booking';
+
+        }
+
+    }
+);
+
+}
+
+function formatDate(iso){
+
+    const d =
+        new Date(
+            iso + 'T00:00:00'
+        );
+
+    return d.toLocaleDateString(
+        'en-PH',
+        {
+            weekday:'long',
+            year:'numeric',
+            month:'long',
+            day:'numeric'
+        }
+    );
+
+}
+
+function renderConfirmation(
+    service,
+    petName,
+    dateISO,
+    time
+){
+
+    bookingModal.innerHTML = `
+
+        <div class="booking-confirmed">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                />
+
+                <polyline
+                    points="8 12 11 15 16 9"
+                />
+
+            </svg>
+
+            <h3>
+                Booking Requested!
+            </h3>
+
+            <p>
+                We've received your request for
+                ${service.name}.
+            </p>
+
+            <div class="summary">
+
+                <div>
+                    <strong>Pet:</strong>
+                    ${petName}
+                </div>
+
+                <div>
+                    <strong>Service:</strong>
+                    ${service.name}
+                    (${service.price})
+                </div>
+
+                <div>
+                    <strong>Date:</strong>
+                    ${formatDate(dateISO)}
+                </div>
+
+                <div>
+                    <strong>Time:</strong>
+                    ${time}
+                </div>
+
+            </div>
+
+            <button
+                class="booking-done-btn"
+                id="bookingDoneBtn"
+                type="button"
+            >
+                Done
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById(
+            'bookingDoneBtn'
+        )
+        .addEventListener(
+            'click',
+            closeBooking
+        );
+
+}
+
+function getLoggedInUser(){
+
+    const loggedInUser =
+        localStorage.getItem('loggedInUser');
+
+    if(loggedInUser){
+
+        try{
+
+            return JSON.parse(
+                loggedInUser
+            );
+
+        }catch(error){
+
+            console.error(
+                'Invalid loggedInUser:',
+                error
+            );
+
+        }
+
+    }
+
+
+    const furryCornerUser =
+        localStorage.getItem('furryCornerUser');
+
+    if(furryCornerUser){
+
+        try{
+
+            return JSON.parse(
+                furryCornerUser
+            );
+
+        }catch(error){
+
+            console.error(
+                'Invalid furryCornerUser:',
+                error
+            );
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+function isLoggedIn(){
+
+    return !!getLoggedInUser();
+
+}
+
+function openBooking(serviceId){
+
+    if(!isLoggedIn()){
+
+        alert(
+            'Please sign in to book a service.'
+        );
+
+        window.location.href =
+            'signin.html';
+
+        return;
+
+    }
+
+    const service =
+        services.find(
+            service =>
+                service.id === serviceId
+        );
+
+    if(!service) return;
+
+    renderBookingForm(service);
+
+    bookingBackdrop.classList.add(
+        'open'
+    );
+
+    document.body.style.overflow =
+        'hidden';
+
+}
+
+function closeBooking(){
+
+    bookingBackdrop.classList.remove(
+        'open'
+    );
+
+    document.body.style.overflow =
+        '';
+
+}
+
+/* =====================================================
+   BOOK BUTTON CLICK
+===================================================== */
+
+serviceGridContainer.addEventListener(
+    'click',
+    event => {
+
+        const btn =
+            event.target.closest(
+                '.book-btn'
+            );
+
+        if(!btn) return;
+
+        const serviceId =
+            btn.dataset.serviceId;
+
+        openBooking(serviceId);
+
+    }
+);
+
+/* =====================================================
+   CLOSE BOOKING MODAL
+===================================================== */
+
+bookingBackdrop.addEventListener(
+    'click',
+    event => {
+
+        if(
+            event.target ===
+            bookingBackdrop
+        ){
+
+            closeBooking();
+
+        }
+
+    }
+);
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener(
+    'keydown',
+    event => {
+
+        if(event.key !== 'Escape')
+            return;
+
+        closeCartDrawer();
+
+        if(
+            bookingBackdrop.classList.contains(
+                'open'
+            )
+        ){
+
+            closeBooking();
+
+        }
+
+    }
+);
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+renderCartDrawer();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sign Up - FurryCorner PH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#7BB8F0;--blue-dark:#5CA3E8;--cream:#FCE3C0;--cream-light:#FDEEDA;--ink:#1F2430;--white:#fff;--border:#e5e7eb}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--cream-light);line-height:1.5}h1{font:800 31px 'Baloo 2',cursive}a{text-decoration:none;color:inherit}.page{max-width:520px;margin:auto;padding:18px 16px 40px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.brand{font:800 25px 'Baloo 2',cursive;color:var(--blue-dark)}.back,.link{color:var(--blue-dark);font-weight:800}.panel{background:var(--white);border-radius:16px;padding:24px;box-shadow:0 5px 18px #1f243012}.intro{margin:4px 0 20px;color:#7c8490;font-size:14px}.field{margin-top:15px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:12px;font:600 14px 'Nunito',sans-serif}.button{width:100%;border:0;border-radius:9px;padding:13px;margin-top:20px;background:var(--blue-dark);color:#fff;font:800 15px 'Nunito',sans-serif;cursor:pointer}.button:disabled{opacity:.6;cursor:not-allowed}.message{margin-top:14px;color:#43824b;font-weight:800;font-size:14px}.error-message{margin-top:14px;color:#c0392b;font-weight:800;font-size:14px}.signin{margin-top:18px;text-align:center;font-size:14px;color:#7c8490}.signin a{color:var(--blue-dark);font-weight:800}@media(max-width:480px){.page{padding:14px 12px}.panel{padding:19px}}
+</style>
+<style>
+body{min-height:100vh;background:#FCEBD6}
+.page{min-height:100vh;width:100%;max-width:none;display:flex;align-items:center;justify-content:center;padding:35px 16px}
+.topbar{display:none}
+.panel{width:100%;max-width:390px;padding:26px;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(88,63,35,.08);text-align:center}
+.panel::before{content:"";display:block;width:140px;height:140px;margin:0 auto 10px;background:url("images/logo.png") center/contain no-repeat}
+.panel h1{font-size:27px;margin-bottom:6px}
+.intro{margin:0 0 20px;font-size:15px;color:#929caf}
+.google-button{width:100%;height:52px;border:1px solid #dce2ea;border-radius:10px;background:#fff;color:var(--ink);font:800 16px 'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:14px;cursor:pointer}
+.google-mark{font:800 20px Arial,sans-serif;color:#4285f4}
+.google-mark{width:20px;height:20px;flex:0 0 auto}
+.or-divider{display:flex;align-items:center;gap:14px;margin:20px 0 22px;color:#929caf;font-size:13px;font-weight:800}.or-divider::before,.or-divider::after{content:"";height:1px;background:#dce2ea;flex:1}
+.name-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{text-align:left;margin-top:0;margin-bottom:16px}.field label{display:none}.field input{height:50px;padding:0 15px;border-radius:10px;font-size:15px;color:var(--ink)}
+.button{height:52px;margin-top:0;border-radius:10px;font-size:16px}.signin{margin-top:20px;font-size:15px}
+@media(max-width:480px){.page{padding:16px 12px}.panel{padding:22px 18px;border-radius:14px}.panel::before{width:115px;height:115px}.panel h1{font-size:25px}.intro{font-size:14px}.google-button{font-size:15px}.field input{font-size:14px}.signin{font-size:14px}}
+</style>
+</head>
+<body><div class="page"><header class="topbar"><a class="brand" href="index.html">FurryCorner PH</a><a class="back" href="profile.html">Profile</a></header><main class="panel"><h1>Create your account</h1><p class="intro">Save your details for a faster, friendlier checkout.</p><form id="signupForm"><div class="field"><label for="name">Full name</label><input id="name" required></div><div class="field"><label for="email">Email address</label><input id="email" type="email" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" minlength="6" required></div><div class="field"><label for="confirm">Confirm password</label><input id="confirm" type="password" minlength="6" required></div><button class="button" type="submit">Create account</button><p class="error-message" id="formError" hidden></p></form>
+
+<div id="otpSection" hidden>
+  <p class="intro" id="otpIntro">Enter the 6-digit code we sent to your email.</p>
+  <div class="field"><input id="otpInput" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric" autocomplete="one-time-code"></div>
+  <button class="button" type="button" id="verifyOtpBtn">Verify &amp; Create Account</button>
+  <p class="error-message" id="otpError" hidden></p>
+  <p class="message" id="message" hidden>Account created. Welcome to FurryCorner!</p>
+  <p class="signin">Didn't get a code? <a href="#" id="resendOtp">Resend code</a></p>
+</div>
+
+<p class="signin" id="signinRow">Already have an account? <a href="signin.html">Sign in</a></p></main></div>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// TODO: replace with your EmailJS Public Key (EmailJS dashboard > Account > General)
+emailjs.init({
+    publicKey: "DcyXEoIAzYssD_WOX"
+});
+
+const EMAILJS_SERVICE_ID = "service_5x88hn8";
+const EMAILJS_TEMPLATE_ID = "template_l9wyeoh";
+
+const signupForm = document.getElementById('signupForm');
+const signupPanel = document.querySelector('.panel');
+const fullNameField = document.getElementById('name').closest('.field');
+const otpSection = document.getElementById('otpSection');
+const otpInput = document.getElementById('otpInput');
+const otpError = document.getElementById('otpError');
+const formError = document.getElementById('formError');
+const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+const resendOtp = document.getElementById('resendOtp');
+const messageEl = document.getElementById('message');
+const submitBtn = signupForm.querySelector('button[type="submit"]');
+
+// --- Google-style signup UI (name split, Google button) ---
+document.querySelector('.panel h1').textContent = 'Create your account';
+document.querySelector('.intro').textContent = 'Join FurryCorner to shop and book pet services';
+submitBtn.textContent = 'Continue with Email';
+document.getElementById('email').placeholder = 'you@example.com';
+document.getElementById('password').placeholder = 'Enter password';
+document.getElementById('confirm').placeholder = 'Confirm password';
+document.querySelector('.signin a').textContent = 'Sign in';
+document.querySelector('.signin a').href = 'signin.html';
+signupPanel.insertBefore(Object.assign(document.createElement('button'), {className: 'google-button', type: 'button', innerHTML: '<svg class="google-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.27c0-.71-.06-1.39-.18-2.05H12v3.88h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.15c1.84-1.69 2.9-4.18 2.9-7.22Z"></path><path fill="#34A853" d="M12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.15-2.45c-.87.58-1.98.93-3.3.93-2.54 0-4.69-1.72-5.46-4.03H3.28v2.53A9.75 9.75 0 0 0 12 21.75Z"></path><path fill="#FBBC05" d="M6.54 13.84A5.86 5.86 0 0 1 6.23 12c0-.64.11-1.26.31-1.84V7.63H3.28A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.05 1.03 4.37l3.26-2.53Z"></path><path fill="#EA4335" d="M12 6.13c1.43 0 2.72.49 3.73 1.45l2.8-2.8C16.84 3.22 14.63 2.25 12 2.25a9.75 9.75 0 0 0-8.72 5.38l3.26 2.53c.77-2.31 2.92-4.03 5.46-4.03Z"></path></svg>Continue with Google'}), signupForm);
+signupPanel.insertBefore(Object.assign(document.createElement('div'), {className: 'or-divider', textContent: 'OR'}), signupForm);
+fullNameField.innerHTML = '<input id="name" type="hidden">';
+fullNameField.style.display = 'none';
+const nameFields = document.createElement('div');
+nameFields.className = 'name-fields';
+nameFields.innerHTML = '<div class="field"><input id="firstName" placeholder="First name" autocomplete="given-name" required></div><div class="field"><input id="lastName" placeholder="Last name" autocomplete="family-name" required></div>';
+signupForm.insertBefore(nameFields, fullNameField);
+const syncFullName = () => { document.getElementById('name').value = `${document.getElementById('firstName').value.trim()} ${document.getElementById('lastName').value.trim()}`.trim(); };
+document.querySelectorAll('#firstName, #lastName').forEach(input => input.addEventListener('input', syncFullName));
+document.getElementById('otpInput').addEventListener('input', event => {
+  event.target.value = event.target.value.replace(/\D/g, '').slice(0, 6);
+});
+
+// --- OTP-gated signup flow ---
+let generatedOtp = null;
+let pendingUser = null;
+
+function generateOtp() {
+  return String(Math.floor(100000 + Math.random() * 900000)); // 6-digit code
+}
+
+function sendOtpEmail(user) {
+    generatedOtp = generateOtp();
+
+    console.log("Sending OTP:", generatedOtp);
+    console.log("To:", user.email);
+
+    return emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+            email: user.email,
+            name: user.name,
+            passcode: generatedOtp
+        }
+    );
+}
+
+function showFormError(msg) {
+  formError.textContent = msg;
+  formError.hidden = false;
+}
+
+function resetFormError() {
+  formError.hidden = true;
+  formError.textContent = '';
+}
+
+function showOtpError(msg) {
+  otpError.textContent = msg;
+  otpError.hidden = false;
+}
+
+function resetOtpError() {
+  otpError.hidden = true;
+  otpError.textContent = '';
+}
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateSignupFields() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  const confirm = document.getElementById('confirm');
+
+  confirm.setCustomValidity('');
+
+  if (!firstName || !lastName) {
+    return 'Please enter your first and last name.';
+  }
+  if (!email.value.trim()) {
+    return 'Please enter your email address.';
+  }
+  if (!EMAIL_PATTERN.test(email.value.trim())) {
+    return 'Please enter a valid email address.';
+  }
+  if (!password.value) {
+    return 'Please enter a password.';
+  }
+  if (password.value.length < 6) {
+    return 'Password must be at least 6 characters long.';
+  }
+  if (!confirm.value) {
+    return 'Please confirm your password.';
+  }
+  if (password.value !== confirm.value) {
+    confirm.setCustomValidity('Passwords do not match');
+    return 'Passwords do not match.';
+  }
+  return null;
+}
+
+signupForm.addEventListener('submit', event => {
+  event.preventDefault();
+  resetFormError();
+  syncFullName();
+
+  const validationError = validateSignupFields();
+  if (validationError) {
+    showFormError(validationError);
+    return;
+  }
+
+  const password = document.getElementById('password');
+
+  pendingUser = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value.trim().toLowerCase(),
+    password: password.value
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending code...';
+
+  sendOtpEmail(pendingUser)
+    .then(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Continue with Email';
+      signupForm.hidden = true;
+      document.getElementById('signinRow').hidden = true;
+      otpSection.hidden = false;
+      resetOtpError();
+      otpInput.value = '';
+      otpInput.focus();
+    })
+    .catch(err => {
+
+    console.error("========== EMAILJS ERROR ==========");
+    console.error("Status:", err.status);
+    console.error("Text:", err.text);
+    console.error("Full error:", err);
+    console.error("===================================");
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Continue with Email";
+
+    showFormError(
+        "EmailJS Error " +
+        err.status +
+        ": " +
+        (err.text || "Unable to send verification code.")
+    );
+});
+});
+
+verifyOtpBtn.addEventListener('click', async () => {
+
+    resetOtpError();
+
+    const entered = otpInput.value.trim();
+
+    if (!entered) {
+        showOtpError('Please enter the code we emailed you.');
+        return;
+    }
+
+    if (entered.length !== 6) {
+        showOtpError('The code should be 6 digits. Please check and try again.');
+        return;
+    }
+
+    if (!generatedOtp || entered !== generatedOtp) {
+        showOtpError(
+            'That code is incorrect. Please check your email and try again.'
+        );
+        return;
+    }
+
+    // OTP is correct
+    verifyOtpBtn.disabled = true;
+    verifyOtpBtn.textContent = 'Creating account...';
+
+    try {
+
+        const nameParts = pendingUser.name.trim().split(/\s+/);
+
+        const firstName = nameParts.shift() || '';
+        const lastName = nameParts.join(' ') || '';
+
+        const response = await fetch(
+          'http://localhost/furrycorner_api/register.php',
+            {
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: pendingUser.email,
+                    password: pendingUser.password
+                })
+            }
+        );
+
+        const result = await response.text();
+
+        console.log('registerCustomer response:', result);
+
+        let data;
+
+        try {
+            data = JSON.parse(result);
+        } catch (error) {
+
+            console.error(
+                'Server did not return valid JSON:',
+                result
+            );
+
+            showOtpError(
+                'The server returned an invalid response.'
+            );
+
+            verifyOtpBtn.disabled = false;
+            verifyOtpBtn.textContent =
+                'Verify & Create Account';
+
+            return;
+        }
+
+
+        // Registration failed
+        if (!data.success) {
+
+            showOtpError(
+                data.message || 'Unable to create account.'
+            );
+
+            verifyOtpBtn.disabled = false;
+            verifyOtpBtn.textContent =
+                'Verify & Create Account';
+
+            return;
+        }
+
+
+        // Registration successful
+        const loggedInUser = {
+
+            id: data.user_id,
+
+            user_id: data.user_id,
+
+            firstName: firstName,
+
+            lastName: lastName,
+
+            email: pendingUser.email,
+
+            role: data.role || 'customer'
+
+        };
+
+
+        // Save database user locally
+        localStorage.setItem(
+            'loggedInUser',
+            JSON.stringify(loggedInUser)
+        );
+
+        localStorage.setItem(
+            'loggedInUserId',
+            String(data.user_id)
+        );
+
+        localStorage.setItem(
+            'loggedInName',
+            `${firstName} ${lastName}`.trim()
+        );
+
+        localStorage.setItem(
+            'loggedInEmail',
+            pendingUser.email
+        );
+
+
+        // Keep these for compatibility with the existing mobile pages
+        localStorage.setItem(
+            'furryCornerUser',
+            JSON.stringify({
+                name: `${firstName} ${lastName}`.trim(),
+                email: pendingUser.email
+            })
+        );
+
+
+        localStorage.setItem(
+            'profileName',
+            `${firstName} ${lastName}`.trim()
+        );
+
+
+        // Optional: keep the old account record
+        localStorage.setItem(
+            'furryCornerAccount',
+            JSON.stringify(pendingUser)
+        );
+
+
+        verifyOtpBtn.textContent =
+            'Account created';
+
+        messageEl.textContent =
+            'Account created successfully! Welcome to FurryCorner.';
+
+        messageEl.hidden = false;
+
+
+        // Redirect after successful database registration
+        setTimeout(() => {
+
+            const returnPage =
+                new URLSearchParams(
+                    window.location.search
+                ).get('return');
+
+            if (returnPage === 'checkout') {
+
+                window.location.href =
+                    'checkout.html';
+
+            } else {
+
+                window.location.href =
+                    'profile.html';
+
+            }
+
+        }, 600);
+
+
+    } catch (error) {
+
+        console.error(
+            'Registration request failed:',
+            error
+        );
+
+        showOtpError(
+            'Unable to connect to the server. Please try again.'
+        );
+
+        verifyOtpBtn.disabled = false;
+
+        verifyOtpBtn.textContent =
+            'Verify & Create Account';
+    }
+
+});
+
+resendOtp.addEventListener('click', event => {
+  event.preventDefault();
+  if (!pendingUser) return;
+  resetOtpError();
+  resendOtp.textContent = 'Sending...';
+  sendOtpEmail(pendingUser)
+    .then(() => { resendOtp.textContent = 'Resend code'; })
+    .catch(err => {
+      console.error('EmailJS resend failed:', err);
+      resendOtp.textContent = 'Resend code';
+      showOtpError("Couldn't resend the code. Please try again.");
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile - FurryCorner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --blue:#7BB8F0;
+    --blue-dark:#5CA3E8;
+    --cream:#FCE3C0;
+    --cream-light:#FDEEDA;
+    --ink:#1F2430;
+    --white:#fff;
+    --border:#e5e7eb;
+    --red:#e0685f;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:var(--cream-light);
+    line-height:1.5;
+}
+
+h1,h2{
+    font-family:'Baloo 2',cursive;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* ================================
+   PAGE
+================================ */
+
+.page{
+    max-width:680px;
+    margin:auto;
+    padding:18px 16px 40px;
+}
+
+/* ================================
+   NAVBAR
+================================ */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    width:100%;
+
+    background:var(--white);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:12px 40px;
+
+    box-shadow:0 2px 0 rgba(0,0,0,.04);
+}
+
+.navbar .back{
+    display:none;
+}
+
+.navbar .brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font:800 25px 'Baloo 2',cursive;
+    color:var(--blue-dark);
+}
+
+.navbar .brand img{
+    width:38px;
+    height:38px;
+    object-fit:contain;
+}
+
+/* ================================
+   CART BUTTON
+================================ */
+
+.navbar .cart-link{
+    position:relative;
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+    border-radius:8px;
+
+    background:transparent;
+    color:var(--ink);
+
+    cursor:pointer;
+    padding:0;
+}
+
+.navbar .cart-link:hover{
+    background:var(--cream-light);
+}
+
+.navbar .cart-link svg{
+    width:24px;
+    height:24px;
+}
+
+/* ================================
+   BRAND
+================================ */
+
+.brand{
+    font:800 25px 'Baloo 2',cursive;
+    color:var(--blue-dark);
+}
+
+.back,
+.link{
+    color:var(--blue-dark);
+    font-weight:800;
+}
+
+/* ================================
+   MAIN PANEL
+================================ */
+
+.panel{
+    background:#fff;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 5px 18px #1f243012;
+}
+
+/* ================================
+   PROFILE HEADER
+================================ */
+
+.profile-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding-bottom:22px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.avatar{
+    width:68px;
+    height:68px;
+
+    border-radius:50%;
+
+    background:var(--blue);
+
+    display:grid;
+    place-items:center;
+
+    font:800 28px 'Baloo 2',cursive;
+
+    color:#fff;
+
+    flex-shrink:0;
+}
+
+.avatar svg{
+    width:34px;
+    height:34px;
+}
+
+.profile-head h1{
+    font-size:24px;
+    line-height:1.1;
+    white-space:nowrap;
+}
+
+.profile-head p.muted{
+    font-size:11px;
+    line-height:1.2;
+}
+
+.muted{
+    color:#7c8490;
+    font-size:14px;
+}
+
+/* ================================
+   PROFILE ACTIONS
+================================ */
+
+.profile-actions{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+
+    gap:4px;
+
+    margin-left:auto;
+
+    width:86px;
+}
+
+.profile-head .profile-actions .button{
+    margin-top:1px;
+
+    padding:6px 8px;
+
+    font-size:12px;
+
+    text-align:center;
+}
+
+.profile-head .profile-actions .secondary{
+    margin-left:0;
+}
+
+.profile-head .profile-actions .logout{
+    padding:6px 4px;
+    font-size:12px;
+}
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section{
+    padding:20px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.section:last-child{
+    border-bottom:0;
+    padding-bottom:0;
+}
+
+.section h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+/* ================================
+   DETAILS
+================================ */
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+
+    gap:16px;
+
+    padding:9px 0;
+
+    font-size:14px;
+}
+
+.detail span:first-child{
+    color:#7c8490;
+}
+
+/* ================================
+   MENU
+================================ */
+
+.menu-section{
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.menu-section h2{
+    font-size:14px;
+
+    color:#7c8490;
+
+    font-family:'Nunito',sans-serif;
+
+    font-weight:800;
+
+    margin-bottom:4px;
+}
+
+.menu-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:16px;
+
+    padding:13px 0;
+
+    border-top:1px solid #f0f1f2;
+
+    font-weight:700;
+}
+
+.menu-row:first-of-type{
+    border-top:0;
+}
+
+.menu-row::after{
+    content:'›';
+
+    color:#7c8490;
+
+    font-size:24px;
+
+    font-weight:400;
+
+    line-height:1;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.button{
+    display:inline-block;
+
+    margin-top:18px;
+
+    background:var(--blue-dark);
+
+    color:#fff;
+
+    border-radius:9px;
+
+    padding:12px 18px;
+
+    font-weight:800;
+
+    border:0;
+
+    cursor:pointer;
+}
+
+.secondary{
+    background:var(--cream);
+    color:var(--ink);
+    margin-left:8px;
+}
+
+.logout{
+    font:800 14px 'Nunito',sans-serif;
+}
+
+/* ================================
+   PURCHASE SECTION
+================================ */
+
+.purchase-section{
+    padding:22px 0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.purchase-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:18px;
+}
+
+.purchase-header h2{
+    font-size:21px;
+    margin:0;
+}
+
+.history-link{
+    color:var(--blue-dark);
+
+    font-size:14px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+}
+
+.purchase-statuses{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+}
+
+.purchase-status{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:7px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.purchase-status svg{
+    width:34px;
+    height:34px;
+
+    color:var(--ink);
+}
+
+/* ================================
+   MOBILE BOTTOM NAVIGATION
+================================ */
+
+.mobile-bottom-nav{
+    display:none;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    body{
+        padding-bottom:68px;
+    }
+
+    .page{
+        padding:14px 12px;
+    }
+
+    .panel{
+        padding:18px;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+        padding:10px 12px;
+        gap:8px;
+    }
+
+    .navbar .brand{
+        font-size:21px;
+    }
+
+    .navbar .brand img{
+        width:34px;
+        height:34px;
+    }
+
+    /* BOTTOM NAV */
+
+    .mobile-bottom-nav{
+        position:fixed;
+
+        left:0;
+        right:0;
+        bottom:0;
+
+        width:100%;
+        height:68px;
+
+        background:var(--white);
+
+        border-top:1px solid #e5e5e5;
+
+        box-shadow:
+            0 -4px 15px
+            rgba(0,0,0,.08);
+
+        z-index:4000;
+
+        display:grid;
+
+        grid-template-columns:repeat(4,1fr);
+
+        align-items:stretch;
+
+        padding:0;
+        margin:0;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item{
+        width:100%;
+        min-width:0;
+        height:68px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+        justify-content:center;
+
+        gap:3px;
+
+        color:#7d8490;
+
+        font-family:'Nunito',sans-serif;
+
+        font-size:10.5px;
+
+        font-weight:700;
+
+        line-height:1;
+
+        text-decoration:none;
+
+        border:none;
+
+        background:transparent;
+
+        cursor:pointer;
+
+        position:relative;
+
+        padding:8px 2px;
+
+        margin:0;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item svg{
+        width:22px;
+        height:22px;
+
+        display:block;
+
+        flex-shrink:0;
+
+        margin:0;
+    }
+
+    .mobile-bottom-nav
+    .bottom-nav-item
+    span:not(.bottom-notif-badge){
+
+        display:block;
+
+        width:100%;
+
+        text-align:center;
+
+        line-height:1;
+
+        white-space:nowrap;
+
+        overflow:hidden;
+
+        text-overflow:ellipsis;
+    }
+
+    .mobile-bottom-nav
+    .bottom-nav-item.active{
+        color:var(--blue-dark);
+    }
+
+    .mobile-bottom-nav
+    .bottom-nav-item:hover{
+        color:#7d8490;
+    }
+
+    .mobile-bottom-nav
+    .bottom-nav-item.active:hover{
+        color:var(--blue-dark);
+    }
+
+    /* =================================================
+       NOTIFICATION BADGE
+       SAME POSITION AS NOTIF.HTML
+    ================================================= */
+
+    .mobile-bottom-nav .bottom-notif-badge{
+        position:absolute;
+
+        top:6px;
+
+        right:50%;
+
+        transform:translateX(12px);
+
+        min-width:16px;
+        height:16px;
+
+        padding:0 4px;
+
+        display:flex;
+
+        align-items:center;
+        justify-content:center;
+
+        border-radius:50%;
+
+        background:var(--red);
+
+        color:white;
+
+        font-size:9px;
+
+        font-weight:800;
+
+        line-height:1;
+
+        z-index:2;
+    }
+
+    /* PROFILE HEADER */
+
+    .profile-head{
+        align-items:flex-start;
+
+        flex-wrap:nowrap;
+    }
+
+    .profile-head>div:nth-child(2){
+        flex:1;
+        min-width:0;
+    }
+
+    .profile-actions{
+        width:86px;
+        flex-shrink:0;
+    }
+
+    .profile-head h1{
+        font-size:20px;
+    }
+
+    .profile-head .profile-actions .button{
+        padding:6px 5px;
+        font-size:11px;
+    }
+
+    /* DETAILS */
+
+    .detail{
+        display:block;
+    }
+
+    .detail span{
+        display:block;
+    }
+
+    .secondary{
+        margin-left:0;
+        margin-top:8px;
+    }
+
+    /* PURCHASE */
+
+    .purchase-statuses{
+        gap:4px;
+    }
+
+    .purchase-status{
+        font-size:11px;
+    }
+
+    .purchase-status svg{
+        width:29px;
+        height:29px;
+    }
+
+    .history-link{
+        font-size:12px;
+    }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media(max-width:380px){
+
+    body{
+        padding-bottom:64px;
+    }
+
+    .mobile-bottom-nav{
+        height:64px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item{
+        height:64px;
+
+        font-size:9.5px;
+
+        gap:3px;
+
+        padding:6px 2px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item svg{
+        width:20px;
+        height:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     MAIN PAGE
+===================================================== -->
+
+<div class="page">
+
+    <header class="topbar">
+
+        <div class="brand">
+            FurryCorner
+        </div>
+
+        <a class="back" href="index.html">
+            Shop
+        </a>
+
+    </header>
+
+
+    <main class="panel">
+
+        <!-- =================================================
+             PROFILE HEADER
+        ================================================= -->
+
+        <div class="profile-head">
+
+            <div class="avatar">
+                FC
+            </div>
+
+            <div>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p class="muted" id="profileSubtitle">
+                    Keep your delivery details close.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ACCOUNT
+        ================================================= -->
+
+        <section class="section" id="accountSection">
+
+            <h2>
+                Welcome to FurryCorner
+            </h2>
+
+            <p class="muted">
+                Create an account to save your details and track future orders.
+            </p>
+
+            <a class="button"
+               id="signupLink"
+               href="signup.html">
+
+                Sign up
+
+            </a>
+
+            <a class="button secondary"
+               href="checkout.html">
+
+                View checkout
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             MY ACCOUNT
+        ================================================= -->
+
+        <section class="menu-section">
+
+            <h2>
+                My Account
+            </h2>
+
+            <a class="menu-row"
+               href="profile.html">
+
+                Account &amp; Security
+
+            </a>
+
+            <a class="menu-row"
+               href="checkout.html">
+
+                My Addresses
+
+            </a>
+
+            <a class="menu-row"
+               href="checkout.html">
+
+                Bank Accounts / Cards
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             SETTINGS
+        ================================================= -->
+
+        <section class="menu-section">
+
+            <h2>
+                Settings
+            </h2>
+
+            <a class="menu-row"
+               href="notif.html">
+
+                Notifications
+
+            </a>
+
+            <a class="menu-row"
+               href="profile.html">
+
+                Privacy Settings
+
+            </a>
+
+            <a class="menu-row"
+               href="profile.html">
+
+                Language
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             SUPPORT
+        ================================================= -->
+
+        <section class="menu-section">
+
+            <h2>
+                Support
+            </h2>
+
+            <a class="menu-row"
+               href="services.html">
+
+                Help Centre
+
+            </a>
+
+            <a class="menu-row"
+               href="services.html">
+
+                Community Rules
+
+            </a>
+
+            <a class="menu-row"
+               href="services.html">
+
+                FurryCorner Policies
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================= -->
+
+        <section class="menu-section">
+
+            <h2>
+                About
+            </h2>
+
+            <a class="menu-row"
+               href="index.html">
+
+                Happy with FurryCorner? Rate us!
+
+            </a>
+
+            <a class="menu-row"
+               href="index.html">
+
+                About FurryCorner
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK LINKS
+        ================================================= -->
+
+        <section class="section">
+
+            <h2>
+                Quick links
+            </h2>
+
+            <div class="detail">
+
+                <span>
+                    Shopping cart
+                </span>
+
+                <a class="link"
+                   href="index.html">
+
+                    Browse products
+
+                </a>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Pet care services
+                </span>
+
+                <a class="link"
+                   href="services.html">
+
+                    See services
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let user = null;
+
+const account =
+    document.getElementById('accountSection');
+
+const returnTo =
+    new URLSearchParams(
+        window.location.search
+    ).get('return');
+
+
+/* =====================================================
+   LOAD USER PROFILE FROM DATABASE
+===================================================== */
+
+async function loadProfile() {
+
+    const userId =
+        localStorage.getItem('loggedInUserId');
+
+    /*
+     * No logged-in user
+     */
+    if (!userId) {
+
+        handleLoggedOutProfile();
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            `http://localhost/furrycorner_api/getProfile.php?user_id=${encodeURIComponent(userId)}`
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Server returned ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            'getProfile.php response:',
+            data
+        );
+
+
+        /*
+         * Database did not return user
+         */
+
+        if (!data.success) {
+
+            console.error(
+                'Profile loading failed:',
+                data.message
+            );
+
+            handleLoggedOutProfile();
+
+            return;
+        }
+
+
+        /*
+         * Store database user
+         */
+
+        user = data.user;
+
+
+        /*
+         * Keep logged-in information
+         * synchronized
+         */
+
+        localStorage.setItem(
+            'loggedInUser',
+            JSON.stringify({
+                id: user.user_id,
+                user_id: user.user_id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                role: user.role
+            })
+        );
+
+
+        localStorage.setItem(
+            'loggedInName',
+            `${user.first_name} ${user.last_name}`.trim()
+        );
+
+
+        localStorage.setItem(
+            'loggedInEmail',
+            user.email
+        );
+
+
+        /*
+         * Display account information
+         */
+
+        account.innerHTML = `
+
+            <h2>
+                Account details
+            </h2>
+
+            <div class="detail">
+
+                <span>
+                    Name
+                </span>
+
+                <strong>
+                    ${escapeHTML(user.first_name || '')}
+                    ${escapeHTML(user.last_name || '')}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <span>
+                    Email
+                </span>
+
+                <strong>
+                    ${escapeHTML(user.email || '')}
+                </strong>
+
+            </div>
+
+            <button
+                class="button secondary logout"
+                id="logout">
+
+                Sign out
+
+            </button>
+
+        `;
+
+
+        document.getElementById(
+            'profileSubtitle'
+        ).textContent =
+            'You are signed in.';
+
+
+        /*
+         * Logout
+         */
+
+        document
+            .getElementById('logout')
+            .addEventListener(
+                'click',
+                logoutUser
+            );
+
+
+        /*
+         * Update avatar
+         */
+
+        updateProfileAvatar();
+
+
+        /*
+         * Move buttons to profile header
+         */
+
+        moveProfileActions();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            'Unable to load profile:',
+            error
+        );
+
+        handleLoggedOutProfile();
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGGED OUT PROFILE
+===================================================== */
+
+function handleLoggedOutProfile() {
+
+    user = null;
+
+
+    if (returnTo === 'checkout') {
+
+        document.getElementById(
+            'signupLink'
+        ).href =
+            'signup.html?return=checkout';
+
+
+        account.querySelector('h2')
+            .textContent =
+            'Sign in to checkout';
+
+
+        account.querySelector('.muted')
+            .textContent =
+            'Create an account first to continue with your order.';
+
+    }
+
+
+    /*
+     * Add login button
+     */
+
+    if (
+        !document.getElementById('profileLoginButton')
+    ) {
+
+        const loginLink =
+            document.createElement('a');
+
+        loginLink.id =
+            'profileLoginButton';
+
+        loginLink.className =
+            'button secondary';
+
+        loginLink.textContent =
+            'Log in';
+
+        loginLink.href =
+            returnTo === 'checkout'
+                ? 'signin.html?return=checkout'
+                : 'signin.html';
+
+
+        account.insertBefore(
+            loginLink,
+            document.getElementById('signupLink')
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logoutUser() {
+
+    /*
+     * Remove database login session
+     */
+
+    localStorage.removeItem(
+        'loggedInUserId'
+    );
+
+    localStorage.removeItem(
+        'loggedInUser'
+    );
+
+    localStorage.removeItem(
+        'loggedInName'
+    );
+
+    localStorage.removeItem(
+        'loggedInEmail'
+    );
+
+    /*
+     * Remove old local account session
+     */
+
+    localStorage.removeItem(
+        'furryCornerUser'
+    );
+
+    localStorage.removeItem(
+        'profileName'
+    );
+
+
+    /*
+     * Return to login page
+     */
+
+    window.location.href =
+        'signin.html';
+
+}
+
+
+/* =====================================================
+   AVATAR
+===================================================== */
+
+function updateProfileAvatar() {
+
+    const avatar =
+        document.querySelector('.avatar');
+
+
+    if (!avatar) return;
+
+
+    if (!user) {
+
+        avatar.innerHTML = `
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <circle
+                    cx="12"
+                    cy="8"
+                    r="4">
+                </circle>
+
+                <path d="
+                    M4 21
+                    c0-4 4-6 8-6
+                    s8 2 8 6
+                "></path>
+
+            </svg>
+
+        `;
+
+        return;
+    }
+
+
+    const profileName =
+        `${user.first_name || ''} ${user.last_name || ''}`.trim();
+
+
+    const nameParts =
+        profileName
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+    if (nameParts.length === 0) {
+
+        avatar.textContent = 'FC';
+
+        return;
+    }
+
+
+    const initials =
+        nameParts[0][0] +
+        (
+            nameParts.length > 1
+                ? nameParts[nameParts.length - 1][0]
+                : ''
+        );
+
+
+    avatar.textContent =
+        initials.toUpperCase();
+
+}
+
+
+/* =====================================================
+   MOVE PROFILE ACTIONS
+===================================================== */
+
+function moveProfileActions() {
+
+    /*
+     * Prevent duplicate profile actions
+     */
+
+    if (
+        document.querySelector('.profile-actions')
+    ) {
+
+        return;
+    }
+
+
+    const profileHead =
+        document.querySelector('.profile-head');
+
+
+    if (!profileHead) return;
+
+
+    const profileActions =
+        document.createElement('div');
+
+
+    profileActions.className =
+        'profile-actions';
+
+
+    const logoutButton =
+        document.querySelector(
+            '#accountSection .logout'
+        );
+
+
+    if (logoutButton) {
+
+        profileActions.appendChild(
+            logoutButton
+        );
+
+    }
+
+
+    profileHead.appendChild(
+        profileActions
+    );
+
+}
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+}
+
+
+/* =====================================================
+   PURCHASE SECTION
+===================================================== */
+
+const purchaseSection =
+    document.createElement('section');
+
+
+purchaseSection.className =
+    'purchase-section';
+
+
+purchaseSection.innerHTML = `
+
+    <div class="purchase-header">
+
+        <h2>
+            My Purchases
+        </h2>
+
+        <a
+            class="history-link"
+            href="purchase-status.html?status=history">
+
+            View Purchase History
+            <span aria-hidden="true">›</span>
+
+        </a>
+
+    </div>
+
+
+    <div class="purchase-statuses">
+
+        <!-- TO PAY -->
+
+        <a
+            class="purchase-status"
+            href="purchase-status.html?status=pay">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M3 6h13v14H3z"/>
+                <path d="M16 10h3l2 3v7h-5zM6 3h10v3H6z"/>
+                <path d="M7 17h.01M18 17h.01"/>
+
+            </svg>
+
+            <span>
+                To Pay
+            </span>
+
+        </a>
+
+
+        <!-- TO SHIP -->
+
+        <a
+            class="purchase-status"
+            href="purchase-status.html?status=ship">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linejoin="round">
+
+                <path d="M3 7h18v14H3z"/>
+                <path d="M3 7l3-4h12l3 4"/>
+                <path d="M8 3v6l4-3 4 3V3"/>
+
+            </svg>
+
+            <span>
+                To Ship
+            </span>
+
+        </a>
+
+
+        <!-- TO RECEIVE -->
+
+        <a
+            class="purchase-status"
+            href="purchase-status.html?status=receive">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M3 7h11v10H3z"/>
+                <path d="M14 11h4l3 3v3h-7z"/>
+                <path d="M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                <path d="M18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+
+            </svg>
+
+            <span>
+                To Receive
+            </span>
+
+        </a>
+
+
+        <!-- TO RATE -->
+
+        <a
+            class="purchase-status"
+            href="purchase-status.html?status=rate">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="9"/>
+
+                <path d="
+                    m12 7
+                    1.5 3
+                    3.5.5
+                    -2.5 2.5
+                    .5 3.5
+                    -3-1.5
+                    -3 1.5
+                    .5-3.5
+                    L7 10.5
+                    l3.5-.5z
+                "/>
+
+            </svg>
+
+            <span>
+                To Rate
+            </span>
+
+        </a>
+
+    </div>
+
+`;
+
+
+/*
+ * Insert purchases section
+ */
+
+account.insertAdjacentElement(
+    'afterend',
+    purchaseSection
+);
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+const profilePage =
+    document.querySelector('.page');
+
+
+const profileHeader =
+    document.querySelector('.topbar');
+
+
+if (profileHeader) {
+
+    profileHeader.className =
+        'navbar';
+
+
+    document.body.insertBefore(
+        profileHeader,
+        profilePage
+    );
+
+
+    const brand =
+        profileHeader.querySelector('.brand');
+
+
+    if (brand) {
+
+        brand.innerHTML = `
+            <img
+                src="images/logo.png"
+                alt="FurryCorner logo">
+
+            FurryCorner
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   PROFILE TITLE
+===================================================== */
+
+const profileTitle =
+    document.querySelector(
+        '.profile-head h1'
+    );
+
+
+if (profileTitle) {
+
+    profileTitle.textContent =
+        'My Profile';
+
+}
+
+
+/* =====================================================
+   MOBILE BOTTOM NAVIGATION
+===================================================== */
+
+document.body.insertAdjacentHTML(
+
+    'beforeend',
+
+    `
+
+    <nav class="mobile-bottom-nav">
+
+        <a
+            href="index.html"
+            class="bottom-nav-item">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M3 10.5L12 3l9 7.5"></path>
+                <path d="M5 9.5V21h14V9.5"></path>
+                <path d="M9 21v-6h6v6"></path>
+
+            </svg>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+        <a
+            href="services.html"
+            class="bottom-nav-item">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M5 8h14l1 13H4L5 8z"></path>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+            </svg>
+
+            <span>
+                Services
+            </span>
+
+        </a>
+
+
+        <a
+            href="notif.html"
+            class="bottom-nav-item">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path
+                    d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9">
+                </path>
+
+                <path
+                    d="M13.73 21a2 2 0 01-3.46 0">
+                </path>
+
+            </svg>
+
+            <span>
+                Notifications
+            </span>
+
+            <span
+                class="bottom-notif-badge"
+                id="bottomNotifBadge">
+
+                1
+
+            </span>
+
+        </a>
+
+
+        <a
+            href="profile.html"
+            class="bottom-nav-item active">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <circle
+                    cx="12"
+                    cy="8"
+                    r="4">
+                </circle>
+
+                <path
+                    d="M4 21c0-4 4-6 8-6s8 2 8 6">
+                </path>
+
+            </svg>
+
+            <span>
+                Me
+            </span>
+
+        </a>
+
+    </nav>
+
+    `
+
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadProfile();
+
+</script>
+
+</body>
+</html>

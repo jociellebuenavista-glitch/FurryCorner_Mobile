@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications - FurryCorner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --blue:#7BB8F0;
+    --blue-dark:#5CA3E8;
+    --cream:#FCE3C0;
+    --cream-light:#FDEEDA;
+    --ink:#1F2430;
+    --white:#ffffff;
+    --muted:#8b929e;
+    --border:#e2e6ec;
+    --danger:#e0685f;
+    --danger-dark:#c9554d;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.5;
+    padding-bottom:88px;
+}
+
+main{
+    background:var(--cream);
+    min-height:70vh;
+}
+
+h1,h2,h3,h4,.brand{
+    font-family:'Baloo 2',cursive;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+
+/* =====================================================
+   TOP NAVBAR
+===================================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+
+    background:var(--white);
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    padding:12px 40px;
+
+    box-shadow:0 2px 0 rgba(0,0,0,.04);
+
+    transition:box-shadow .25s ease;
+}
+
+.navbar.scrolled{
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+}
+
+.navbar-title{
+    flex:1;
+
+    font-size:29px;
+
+    color:var(--blue-dark);
+}
+
+
+/* =====================================================
+   CART ICON
+===================================================== */
+
+.cart-link{
+    position:relative;
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    border-radius:8px;
+
+    border:none;
+    background:transparent;
+
+    color:var(--ink);
+
+    cursor:pointer;
+
+    font-family:'Nunito',sans-serif;
+
+    padding:0;
+}
+
+.cart-link:hover{
+    background:var(--cream-light);
+}
+
+.cart-link svg{
+    width:24px;
+    height:24px;
+}
+
+.cart-badge{
+    position:absolute;
+
+    top:2px;
+    right:0;
+
+    min-width:18px;
+    height:18px;
+
+    padding:0 4px;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--blue-dark);
+    color:white;
+
+    font-size:10px;
+    font-weight:800;
+
+    border:2px solid white;
+}
+
+
+/* =====================================================
+   NOTIFICATIONS PAGE
+===================================================== */
+
+.notif-page{
+    max-width:640px;
+
+    margin:0 auto;
+
+    padding:28px 20px 40px;
+}
+
+.notif-panel{
+    background:white;
+
+    border-radius:14px;
+
+    box-shadow:0 5px 18px rgba(31,36,48,.07);
+
+    overflow:hidden;
+}
+
+.notif-page-header{
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:14px;
+}
+
+
+/* =====================================================
+   FILTER TABS
+===================================================== */
+
+.notif-tabs{
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:16px;
+}
+
+.notif-tab{
+    flex:1 1 0;
+
+    min-width:0;
+    min-height:46px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    padding:10px 8px;
+
+    border:1.5px solid var(--border);
+    border-radius:999px;
+
+    background:var(--white);
+
+    color:var(--ink);
+
+    font-family:'Nunito',sans-serif;
+    font-size:13px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+.notif-tab:hover,
+.notif-tab.active{
+    border-color:var(--blue);
+    background:var(--blue);
+    color:var(--white);
+}
+
+.tab-count{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:22px;
+    height:22px;
+
+    padding:0 6px;
+
+    border-radius:50%;
+
+    background:var(--ink);
+    color:white;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.notif-mark-read{
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:var(--blue-dark);
+
+    text-decoration:underline;
+}
+
+.notif-list{
+    display:flex;
+    flex-direction:column;
+}
+
+.notif-item{
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    padding:18px 22px;
+
+    border-bottom:1px solid #f2f2f2;
+
+    position:relative;
+
+    cursor:pointer;
+}
+
+.notif-item:last-child{
+    border-bottom:none;
+}
+
+.notif-item.unread{
+    background:#eef0f2;
+}
+
+.notif-icon{
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.notif-icon.payment{
+    background:#e5f5ec;
+    color:#2f9e63;
+}
+
+.notif-icon.booking{
+    background:#e8f1fd;
+    color:var(--blue-dark);
+}
+
+.notif-icon svg{
+    width:21px;
+    height:21px;
+}
+
+.notif-body{
+    flex:1;
+    min-width:0;
+}
+
+.notif-title{
+    font-weight:800;
+
+    font-size:15px;
+
+    line-height:1.35;
+
+    margin-bottom:6px;
+
+    color:var(--blue-dark);
+}
+
+.notif-meta{
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:12.5px;
+
+    color:#9aa1ad;
+
+    font-weight:700;
+}
+
+.notif-meta .dot-sep{
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#9aa1ad;
+}
+
+.notif-unread-dot{
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--blue-dark);
+
+    flex-shrink:0;
+
+    margin-top:5px;
+}
+
+.notif-empty{
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:#9aa1ad;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   MOBILE BOTTOM NAVIGATION
+===================================================== */
+
+.mobile-bottom-nav{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    width:100%;
+    height:68px;
+
+    background:var(--white);
+
+    border-top:1px solid #e5e5e5;
+
+    box-shadow:
+        0 -4px 15px
+        rgba(0,0,0,.08);
+
+    z-index:4000;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    align-items:stretch;
+
+    padding:0;
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item{
+    width:100%;
+    min-width:0;
+    height:68px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+
+    color:#7d8490;
+
+    /* FurryCorner text styling */
+    font-family:'Baloo 2',cursive;
+    font-size:11px;
+    font-weight:800;
+    line-height:1;
+
+    text-decoration:none;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    position:relative;
+    padding:8px 2px;
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item svg{
+    width:22px;
+    height:22px;
+
+    display:block;
+
+    flex-shrink:0;
+
+    margin:0;
+}
+
+.mobile-bottom-nav .bottom-nav-item span:not(.bottom-notif-badge){
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    line-height:1;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.mobile-bottom-nav .bottom-nav-item.active{
+    color:var(--blue-dark);
+}
+
+.mobile-bottom-nav .bottom-nav-item:hover{
+    color:#7d8490;
+}
+
+.mobile-bottom-nav .bottom-nav-item.active:hover{
+    color:var(--blue-dark);
+}
+
+.mobile-bottom-nav .bottom-notif-badge{
+    position:absolute;
+
+    top:6px;
+
+    right:50%;
+
+    transform:translateX(12px);
+
+    min-width:16px;
+    height:16px;
+
+    padding:0 4px;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--danger);
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    line-height:1;
+
+    z-index:2;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px){
+
+    .navbar{
+        padding:10px 16px;
+    }
+
+    .navbar-title{
+        font-size:21px;
+    }
+
+    .notif-page{
+        padding:18px 12px 30px;
+    }
+}
+
+@media(max-width:380px){
+
+    .navbar{
+        padding:9px 8px;
+    }
+
+    .cart-link{
+        width:36px;
+    }
+
+    body{
+        padding-bottom:64px;
+    }
+
+    .mobile-bottom-nav{
+        height:64px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item{
+        height:64px;
+
+        font-size:9.5px;
+
+        gap:3px;
+
+        padding:6px 2px;
+    }
+
+    .mobile-bottom-nav .bottom-nav-item svg{
+        width:20px;
+        height:20px;
+    }
+}
+
+@media(min-width:701px){
+
+    .mobile-bottom-nav{
+        display:none;
+    }
+
+    body{
+        padding-bottom:0;
+    }
+}
+
+
+/* =====================================================
+   CART DRAWER
+===================================================== */
+
+.cart-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(31,36,48,.35);
+
+    backdrop-filter:blur(2px);
+
+    z-index:5000;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.25s ease;
+}
+
+.cart-overlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart-drawer{
+    position:fixed;
+
+    top:0;
+    bottom:0;
+    right:0;
+
+    width:390px;
+    max-width:90vw;
+
+    height:100dvh;
+
+    background:var(--cream-light);
+
+    z-index:5001;
+
+    display:flex;
+    flex-direction:column;
+
+    transform:translateX(100%);
+
+    transition:
+        transform .3s ease;
+
+    box-shadow:
+        -8px 0 30px
+        rgba(0,0,0,.15);
+}
+
+.cart-drawer.open{
+    transform:translateX(0);
+}
+
+
+/* =====================================================
+   CART HEADER
+===================================================== */
+
+.cart-drawer-header{
+    background:var(--blue-dark);
+
+    color:white;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex-shrink:0;
+}
+
+.cart-drawer-header h2{
+    font-size:24px;
+}
+
+.cart-header-actions{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.cart-edit{
+    height:34px;
+
+    padding:0 12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-family:'Nunito',sans-serif;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.cart-edit:hover{
+    background:rgba(255,255,255,.25);
+}
+
+.cart-edit:disabled{
+    cursor:not-allowed;
+    opacity:.5 !important;
+}
+
+.cart-close{
+    width:36px;
+    height:36px;
+
+    border:2px solid
+        rgba(255,255,255,.7);
+
+    border-radius:50%;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:25px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+
+/* =====================================================
+   CART BODY
+===================================================== */
+
+.cart-drawer-body{
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    min-height:0;
+}
+
+.drawer-cart-item{
+    background:white;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.06);
+}
+
+/* UPDATED: Checkbox is now always visible */
+.drawer-item-checkbox{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    accent-color:var(--blue-dark);
+    cursor:pointer;
+    display: block; 
+}
+
+.drawer-cart-item img{
+    width:70px;
+    height:70px;
+
+    border-radius:10px;
+
+    background:var(--blue);
+
+    object-fit:contain;
+
+    flex-shrink:0;
+}
+
+.drawer-item-info{
+    flex:1;
+
+    min-width:0;
+}
+
+.drawer-item-name{
+    font-weight:800;
+
+    font-size:14px;
+
+    margin-bottom:4px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.drawer-item-price{
+    color:var(--blue-dark);
+
+    font-weight:800;
+
+    font-size:14px;
+}
+
+.drawer-item-actions{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:6px;
+
+    flex-shrink:0;
+}
+
+.drawer-item-qty-control{
+    display:flex;
+
+    align-items:center;
+
+    border:1.5px solid var(--blue);
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    background:var(--white);
+}
+
+.qty-btn{
+    width:30px;
+    height:30px;
+
+    border:none;
+
+    background:transparent;
+
+    color:var(--blue-dark);
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:background .2s ease;
+}
+
+.qty-btn:hover{
+    background:var(--cream-light);
+}
+
+.qty-btn:active{
+    background:var(--blue);
+
+    color:white;
+}
+
+.qty-val{
+    width:32px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    border-left:1.5px solid var(--blue);
+
+    border-right:1.5px solid var(--blue);
+
+    height:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.drawer-empty{
+    min-height:300px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:30px;
+}
+
+.drawer-empty h3{
+    font-size:22px;
+
+    margin-bottom:8px;
+}
+
+.drawer-empty p{
+    font-size:14px;
+
+    opacity:.7;
+}
+
+
+/* =====================================================
+   CART FOOTER
+===================================================== */
+
+.cart-drawer-footer{
+    background:white;
+
+    padding:16px 20px;
+
+    border-top:1px solid #eee;
+
+    flex-shrink:0;
+}
+
+
+/* =====================================================
+   NORMAL / EDIT FOOTER
+===================================================== */
+
+.normal-footer{
+    display:block;
+}
+
+.edit-mode-footer{
+    display:none;
+}
+
+.cart-drawer.edit-mode .normal-footer{
+    display:none;
+}
+
+.cart-drawer.edit-mode .edit-mode-footer{
+    display:block;
+}
+
+
+/* =====================================================
+   NORMAL TOTAL
+===================================================== */
+
+.cart-total-row{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:800;
+}
+
+.cart-total-info{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    min-width:0;
+}
+
+.cart-total-info span{
+    white-space:nowrap;
+}
+
+.cart-total-row strong{
+    color:var(--blue-dark);
+
+    white-space:nowrap;
+
+    font-size:17px;
+}
+
+
+/* =====================================================
+   EDIT FOOTER
+===================================================== */
+
+.edit-total-row{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.select-all-label{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    color:var(--ink);
+
+    white-space:nowrap;
+}
+
+.select-all-label input{
+    width:20px;
+    height:20px;
+
+    accent-color:var(--blue-dark);
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   BUTTONS (Same Size)
+===================================================== */
+
+.checkout-btn,
+.delete-btn{
+    height:42px;
+    width: 125px;
+    padding: 0;
+    border:none;
+    border-radius:9px;
+    color:white;
+    font-family:'Nunito',sans-serif;
+    font-size:12.5px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s ease;
+    white-space:nowrap;
+    text-align: center;
+}
+
+.checkout-btn{
+    background:var(--blue-dark);
+}
+
+.checkout-btn:hover{
+    background:#4b95dc;
+}
+
+.delete-btn{
+    background:var(--danger);
+}
+
+.delete-btn:hover{
+    background:var(--danger-dark);
+}
+
+.checkout-btn:disabled,
+.delete-btn:disabled{
+    background:#c8cdd3;
+    color:#f5f5f5;
+    cursor:not-allowed;
+    opacity:.8;
+}
+
+
+@media(max-width:700px){
+
+    .cart-drawer{
+        width:100%;
+        max-width:100%;
+    }
+
+    .cart-drawer-header{
+        padding:16px 15px;
+    }
+
+    .cart-drawer-header h2{
+        font-size:22px;
+    }
+
+    .cart-header-actions{
+        gap:6px;
+    }
+
+    .cart-edit{
+        height:32px;
+
+        padding:0 10px;
+
+        font-size:12px;
+    }
+
+    .cart-close{
+        width:34px;
+        height:34px;
+
+        font-size:23px;
+    }
+
+    .cart-drawer-body{
+        padding:15px;
+    }
+
+    .drawer-cart-item{
+        padding:10px;
+
+        gap:8px;
+    }
+
+    .drawer-cart-item img{
+        width:62px;
+        height:62px;
+    }
+
+    .drawer-item-checkbox{
+        width:19px;
+        height:19px;
+    }
+
+    .drawer-item-name{
+        font-size:13px;
+    }
+
+    .drawer-item-price{
+        font-size:13px;
+    }
+
+    .qty-btn{
+        width:28px;
+        height:28px;
+
+        font-size:16px;
+    }
+
+    .qty-val{
+        width:28px;
+
+        font-size:13px;
+    }
+
+    .cart-drawer-footer{
+        padding:14px 15px;
+    }
+
+    .cart-total-row{
+        gap:8px;
+    }
+
+    .cart-total-info{
+        gap:5px;
+    }
+
+    .cart-total-row strong{
+        font-size:15px;
+    }
+
+    .checkout-btn,
+    .delete-btn{
+        height:40px;
+        width: 110px;
+        padding: 0;
+        font-size:11.5px;
+    }
+
+    .select-all-label{
+        font-size:12px;
+    }
+
+    .select-all-label input{
+        width:18px;
+        height:18px;
+    }
+
+    .edit-total-row{
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        gap:8px;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOP NAVBAR
+===================================================== -->
+
+<nav class="navbar" id="navbar">
+
+    <h1 class="navbar-title">
+        Notifications
+    </h1>
+
+
+    <button
+        class="cart-link"
+        id="cartToggle"
+        type="button"
+        aria-label="Open shopping cart">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+
+            <circle cx="9" cy="21" r="1"></circle>
+
+            <circle cx="20" cy="21" r="1"></circle>
+
+            <path
+                d="M1 1h4l2.6 13.4a2 2 0 002 1.6h9.7a2 2 0 002-1.6L23 6H6">
+            </path>
+
+        </svg>
+
+
+        <span
+            class="cart-badge"
+            id="cartBadge">
+
+            0
+
+        </span>
+
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     CART DRAWER
+===================================================== -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay">
+</div>
+
+
+<aside
+    class="cart-drawer"
+    id="cartDrawer">
+
+    <div class="cart-drawer-header">
+
+        <h2>
+            Cart
+        </h2>
+
+
+        <div class="cart-header-actions">
+
+            <button
+                type="button"
+                class="cart-edit"
+                id="cartEdit">
+
+                Edit
+
+            </button>
+
+
+            <button
+                type="button"
+                class="cart-close"
+                id="cartClose"
+                aria-label="Close cart">
+
+                ×
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="cart-drawer-body"
+        id="cartDrawerBody">
+    </div>
+
+
+    <div class="cart-drawer-footer">
+
+        <!-- NORMAL FOOTER -->
+        <div class="normal-footer">
+
+            <div class="cart-total-row">
+
+                <div class="cart-total-info">
+
+                    <span>
+                        Total
+                    </span>
+
+
+                    <strong id="drawerTotal">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="checkout-btn"
+                    id="checkoutBtn"
+                    disabled>
+
+                    Checkout
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- EDIT FOOTER -->
+        <div class="edit-mode-footer">
+
+            <div class="edit-total-row">
+
+                <label class="select-all-label">
+
+                    <input
+                        type="checkbox"
+                        id="selectAllCheckbox">
+
+                    <span>
+                        Select All
+                    </span>
+
+                </label>
+
+
+                <button
+                    type="button"
+                    class="delete-btn"
+                    id="deleteSelectedBtn"
+                    disabled>
+
+                    Delete Selected
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
+
+<main class="notif-page">
+
+    <div class="notif-page-header">
+
+        <button
+            class="notif-mark-read"
+            id="notifMarkAllRead">
+
+            Mark all as read
+
+        </button>
+
+    </div>
+
+
+    <div class="notif-tabs" id="notifTabs" role="tablist">
+
+        <button
+            class="notif-tab active"
+            data-filter="all"
+            type="button">
+
+            All
+
+            <span
+                class="tab-count"
+                id="tabCountAll">
+                0
+            </span>
+
+        </button>
+
+        <button
+            class="notif-tab"
+            data-filter="unread"
+            type="button">
+
+            Unread
+
+        </button>
+
+        <button
+            class="notif-tab"
+            data-filter="read"
+            type="button">
+
+            Read
+
+        </button>
+
+    </div>
+
+
+    <div class="notif-panel">
+
+        <div
+            class="notif-list"
+            id="notifList">
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="mobile-bottom-nav">
+
+
+    <a
+        href="index.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M3 10.5L12 3l9 7.5"></path>
+
+            <path d="M5 9.5V21h14V9.5"></path>
+
+            <path d="M9 21v-6h6v6"></path>
+
+        </svg>
+
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <a
+        href="services.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M5 8h14l1 13H4L5 8z"></path>
+
+            <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+        </svg>
+
+
+        <span>
+            Services
+        </span>
+
+    </a>
+
+
+    <a
+        href="notif.html"
+        class="bottom-nav-item active"
+        id="mobileNotifToggle">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path
+                d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9">
+            </path>
+
+
+            <path
+                d="M13.73 21a2 2 0 01-3.46 0">
+            </path>
+
+        </svg>
+
+
+        <span>
+            Notifications
+        </span>
+
+
+        <span
+            class="bottom-notif-badge"
+            id="bottomNotifBadge">
+
+            1
+
+        </span>
+
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <circle
+                cx="12"
+                cy="8"
+                r="4">
+            </circle>
+
+
+            <path
+                d="M4 21c0-4 4-6 8-6s8 2 8 6">
+            </path>
+
+        </svg>
+
+
+        <span>
+            Me
+        </span>
+
+    </a>
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   NAVBAR SCROLL SHADOW
+===================================================== */
+
+const navbar =
+    document.getElementById(
+        'navbar'
+    );
+
+window.addEventListener('scroll', () => {
+
+    if(window.scrollY > 4){
+
+        navbar.classList.add('scrolled');
+
+    }else{
+
+        navbar.classList.remove('scrolled');
+
+    }
+
+});
+
+
+/* =====================================================
+   CART STORAGE
+===================================================== */
+
+function getCart(){
+
+    try{
+
+        const cart =
+            JSON.parse(
+                localStorage.getItem('cart')
+            );
+
+
+        return Array.isArray(cart)
+            ? cart
+            : [];
+
+    }catch(error){
+
+        console.error(
+            'Cart data could not be loaded:',
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+function saveCart(cart){
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =====================================================
+   PESO FORMAT
+===================================================== */
+
+function peso(number){
+
+    return '₱' +
+        Number(number).toLocaleString(
+            'en-PH',
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   CART BADGE
+===================================================== */
+
+function updateCartBadge(){
+
+    const cart =
+        getCart();
+
+
+    const totalItems =
+        cart.reduce(
+            (total,item) =>
+
+                total +
+                Number(
+                    item.quantity || 0
+                ),
+
+            0
+        );
+
+
+    const badge =
+        document.getElementById(
+            'cartBadge'
+        );
+
+
+    if(totalItems > 0){
+
+        badge.textContent =
+            totalItems;
+
+        badge.style.display =
+            'flex';
+
+    }else{
+
+        badge.style.display =
+            'none';
+
+    }
+
+}
+
+
+/* =====================================================
+   CART DRAWER
+===================================================== */
+
+const cartDrawer =
+    document.getElementById(
+        'cartDrawer'
+    );
+
+
+const cartOverlay =
+    document.getElementById(
+        'cartOverlay'
+    );
+
+
+const cartClose =
+    document.getElementById(
+        'cartClose'
+    );
+
+
+const cartEdit =
+    document.getElementById(
+        'cartEdit'
+    );
+
+
+const cartDrawerBody =
+    document.getElementById(
+        'cartDrawerBody'
+    );
+
+
+const drawerTotal =
+    document.getElementById(
+        'drawerTotal'
+    );
+
+
+const checkoutBtn =
+    document.getElementById(
+        'checkoutBtn'
+    );
+
+
+const selectAllCheckbox =
+    document.getElementById(
+        'selectAllCheckbox'
+    );
+
+
+const deleteSelectedBtn =
+    document.getElementById(
+        'deleteSelectedBtn'
+    );
+
+
+const cartToggle =
+    document.getElementById(
+        'cartToggle'
+    );
+
+
+let cartEditMode = false;
+
+let selectedCartItems =
+    new Set();
+
+
+/* =====================================================
+   OPEN CART
+===================================================== */
+
+function openCartDrawer(){
+
+    renderCartDrawer();
+
+    cartDrawer.classList.add(
+        'open'
+    );
+
+    cartOverlay.classList.add(
+        'open'
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE CART
+===================================================== */
+
+function closeCartDrawer(){
+
+    cartDrawer.classList.remove(
+        'open'
+    );
+
+    cartOverlay.classList.remove(
+        'open'
+    );
+
+
+    cartEditMode = false;
+
+    selectedCartItems.clear();
+
+
+    cartDrawer.classList.remove(
+        'edit-mode'
+    );
+
+
+    cartEdit.textContent =
+        'Edit';
+
+
+    selectAllCheckbox.checked =
+        false;
+
+
+    selectAllCheckbox.indeterminate =
+        false;
+
+
+    deleteSelectedBtn.disabled =
+        true;
+
+}
+
+
+/* =====================================================
+   CART TOGGLE
+===================================================== */
+
+cartToggle.addEventListener(
+    'click',
+    openCartDrawer
+);
+
+
+cartClose.addEventListener(
+    'click',
+    closeCartDrawer
+);
+
+
+cartOverlay.addEventListener(
+    'click',
+    closeCartDrawer
+);
+
+
+/* =====================================================
+   EDIT MODE
+===================================================== */
+
+cartEdit.addEventListener(
+    'click',
+    () => {
+
+        const cart =
+            getCart();
+
+
+        if(cart.length === 0){
+
+            return;
+
+        }
+
+
+        cartEditMode =
+            !cartEditMode;
+
+
+        if(cartEditMode){
+
+            cartDrawer.classList.add(
+                'edit-mode'
+            );
+
+
+            cartEdit.textContent =
+                'Done';
+
+        }else{
+
+            cartDrawer.classList.remove(
+                'edit-mode'
+            );
+
+
+            cartEdit.textContent =
+                'Edit';
+
+
+            selectedCartItems.clear();
+
+
+            selectAllCheckbox.checked =
+                false;
+
+
+            selectAllCheckbox.indeterminate =
+                false;
+
+
+            deleteSelectedBtn.disabled =
+                true;
+
+        }
+
+
+        renderCartDrawer();
+
+    }
+);
+
+
+/* =====================================================
+   SELECT ALL
+===================================================== */
+
+selectAllCheckbox.addEventListener(
+    'change',
+    () => {
+
+        const cart =
+            getCart();
+
+
+        if(
+            cart.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            selectAllCheckbox.checked
+        ){
+
+            cart.forEach(item => {
+
+                selectedCartItems.add(
+                    String(item.id)
+                );
+
+            });
+
+        }else{
+
+            selectedCartItems.clear();
+
+        }
+
+
+        renderCartDrawer();
+
+    }
+);
+
+
+/* =====================================================
+   UPDATE SELECT ALL
+===================================================== */
+
+function updateSelectAllCheckbox(){
+
+    const cart =
+        getCart();
+
+
+    if(cart.length === 0){
+
+        selectAllCheckbox.checked =
+            false;
+
+        selectAllCheckbox.indeterminate =
+            false;
+
+        return;
+
+    }
+
+
+    const allSelected =
+        cart.every(
+            item =>
+                selectedCartItems.has(
+                    String(item.id)
+                )
+        );
+
+
+    const someSelected =
+        cart.some(
+            item =>
+                selectedCartItems.has(
+                    String(item.id)
+                )
+        );
+
+
+    selectAllCheckbox.checked =
+        allSelected;
+
+
+    selectAllCheckbox.indeterminate =
+        someSelected &&
+        !allSelected;
+
+}
+
+
+/* =====================================================
+   UPDATE DELETE BUTTON & TOTAL DISPLAY
+===================================================== */
+
+function updateSelectedCartTotal(){
+
+    const cart = getCart();
+
+    const selectedCount = cart.filter(
+        item => selectedCartItems.has(String(item.id))
+    ).length;
+
+    deleteSelectedBtn.disabled = selectedCount === 0;
+    updateSelectAllCheckbox();
+
+    // Update Total Display strictly based on selection
+    let total = 0;
+    if (selectedCount > 0) {
+        cart.forEach(item => {
+            if (selectedCartItems.has(String(item.id))) {
+                total += Number(item.price) * Number(item.quantity || 0);
+            }
+        });
+    }
+    // If selectedCount === 0, total remains 0
+    
+    drawerTotal.textContent = peso(total);
+}
+
+
+/* =====================================================
+   ITEM CHECKBOX
+===================================================== */
+
+cartDrawerBody.addEventListener(
+    'change',
+    event => {
+
+        if(
+            !event.target.classList.contains(
+                'drawer-item-checkbox'
+            )
+        ){
+
+            return;
+
+        }
+
+
+        const id =
+            String(
+                event.target.dataset.id
+            );
+
+
+        if(
+            event.target.checked
+        ){
+
+            selectedCartItems.add(id);
+
+        }else{
+
+            selectedCartItems.delete(id);
+
+        }
+
+
+        updateSelectedCartTotal();
+
+    }
+);
+
+
+/* =====================================================
+   QUANTITY BUTTONS
+===================================================== */
+
+cartDrawerBody.addEventListener(
+    'click',
+    event => {
+
+        const minusBtn =
+            event.target.closest(
+                '.qty-btn.minus'
+            );
+
+
+        const plusBtn =
+            event.target.closest(
+                '.qty-btn.plus'
+            );
+
+
+        if(
+            !minusBtn &&
+            !plusBtn
+        ){
+
+            return;
+
+        }
+
+
+        const id =
+            Number(
+                minusBtn
+                    ? minusBtn.dataset.id
+                    : plusBtn.dataset.id
+            );
+
+
+        let cart =
+            getCart();
+
+
+        const itemIndex =
+            cart.findIndex(
+                item =>
+                    Number(item.id) === id
+            );
+
+
+        if(itemIndex === -1){
+
+            return;
+
+        }
+
+
+        /* DECREASE */
+        if(minusBtn){
+            const currentQuantity = Number(cart[itemIndex].quantity || 1);
+
+            if(currentQuantity > 1){
+                cart[itemIndex].quantity = currentQuantity - 1;
+            } else {
+                // Quantity reached 0, delete the item entirely
+                cart.splice(itemIndex, 1);
+                
+                // Also remove from selected items if it was checked
+                selectedCartItems.delete(String(id));
+            }
+        }
+
+
+        /* INCREASE */
+        if(plusBtn){
+            cart[itemIndex].quantity = Number(cart[itemIndex].quantity || 0) + 1;
+        }
+
+
+        saveCart(cart);
+        updateCartBadge();
+        renderCartDrawer();
+
+    }
+);
+
+
+/* =====================================================
+   DELETE SELECTED
+===================================================== */
+
+deleteSelectedBtn.addEventListener(
+    'click',
+    () => {
+
+        if(
+            selectedCartItems.size === 0
+        ){
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                'Are you sure you want to delete the selected items?'
+            );
+
+
+        if(!confirmed){
+
+            return;
+
+        }
+
+
+        let cart =
+            getCart();
+
+
+        cart =
+            cart.filter(
+                item =>
+                    !selectedCartItems.has(
+                        String(item.id)
+                    )
+            );
+
+
+        saveCart(cart);
+
+
+        selectedCartItems.clear();
+
+        updateCartBadge();
+
+
+        /*
+         * If the cart becomes empty,
+         * completely exit Edit Mode.
+         */
+
+        if(cart.length === 0){
+
+            cartEditMode = false;
+
+            cartDrawer.classList.remove(
+                'edit-mode'
+            );
+
+            cartEdit.textContent =
+                'Edit';
+
+        }
+
+
+        renderCartDrawer();
+
+    }
+);
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+function goToCheckout(items){
+
+    if(
+        !items ||
+        items.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        'checkoutItems',
+        JSON.stringify(items)
+    );
+
+
+    window.location.href =
+        'checkout.html';
+
+}
+
+
+checkoutBtn.addEventListener(
+    'click',
+    () => {
+        const cart = getCart();
+
+        // Filter to only selected items if any are explicitly selected
+        const selectedItems = cart.filter(item => 
+            selectedCartItems.has(String(item.id))
+        );
+
+        // If user selected specific items, checkout those. Otherwise, checkout the whole cart.
+        const itemsToCheckout = selectedItems.length > 0 ? selectedItems : cart;
+
+        goToCheckout(itemsToCheckout);
+    }
+);
+
+
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCartDrawer(){
+
+    const cart =
+        getCart();
+
+
+    /*
+     * Remove selections for products
+     * that no longer exist.
+     */
+
+    const cartIds =
+        new Set(
+            cart.map(
+                item =>
+                    String(item.id)
+            )
+        );
+
+
+    selectedCartItems =
+        new Set(
+            [...selectedCartItems]
+                .filter(
+                    id =>
+                        cartIds.has(id)
+                )
+        );
+
+
+    /* EMPTY CART */
+
+    if(cart.length === 0){
+
+        cartEditMode = false;
+
+
+        cartDrawer.classList.remove(
+            'edit-mode'
+        );
+
+
+        cartEdit.textContent =
+            'Edit';
+
+
+        cartDrawerBody.innerHTML = `
+
+            <div class="drawer-empty">
+
+                <h3>
+                    Your cart is empty
+                </h3>
+
+
+                <p>
+                    Add some products to your
+                    cart to see them here.
+                </p>
+
+            </div>
+
+        `;
+
+
+        drawerTotal.textContent =
+            '₱0.00';
+
+
+        checkoutBtn.disabled =
+            true;
+
+
+        cartEdit.disabled =
+            true;
+
+
+        cartEdit.style.opacity =
+            '.5';
+
+
+        selectAllCheckbox.checked =
+            false;
+
+
+        selectAllCheckbox.indeterminate =
+            false;
+
+
+        deleteSelectedBtn.disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    /* CART HAS ITEMS */
+
+    cartEdit.disabled =
+        false;
+
+
+    cartEdit.style.opacity =
+        '1';
+
+
+    cartDrawerBody.innerHTML =
+
+        cart.map(item => {
+
+            const isChecked =
+                selectedCartItems.has(
+                    String(item.id)
+                );
+
+
+            return `
+
+                <div
+                    class="drawer-cart-item"
+                    data-id="${item.id}">
+
+
+                    <input
+                        type="checkbox"
+                        class="drawer-item-checkbox"
+                        data-id="${item.id}"
+                        ${isChecked ? 'checked' : ''}>
+
+
+                    <img
+                        src="images/product-${item.id}.png"
+                        alt="${item.name}">
+
+
+                    <div class="drawer-item-info">
+
+                        <div class="drawer-item-name">
+
+                            ${item.name}
+
+                        </div>
+
+
+                        <div class="drawer-item-price">
+
+                            ${peso(item.price)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="drawer-item-actions">
+
+                        <div
+                            class="drawer-item-qty-control">
+
+
+                            <button
+                                type="button"
+                                class="qty-btn minus"
+                                data-id="${item.id}"
+                                aria-label="Decrease quantity">
+
+                                −
+
+                            </button>
+
+
+                            <span class="qty-val">
+
+                                ${Number(item.quantity || 1)}
+
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="qty-btn plus"
+                                data-id="${item.id}"
+                                aria-label="Increase quantity">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join('');
+
+
+    /* TOTAL - STRICTLY BASED ON SELECTION */
+    let total = 0;
+    if (selectedCartItems.size > 0) {
+        cart.forEach(item => {
+            if (selectedCartItems.has(String(item.id))) {
+                total += Number(item.price) * Number(item.quantity || 0);
+            }
+        });
+    }
+    // If selectedCartItems.size === 0, total remains 0.
+
+    drawerTotal.textContent = peso(total);
+
+
+    checkoutBtn.disabled =
+        cart.length === 0;
+
+
+    /* EDIT MODE */
+
+    if(cartEditMode){
+
+        cartDrawer.classList.add(
+            'edit-mode'
+        );
+
+
+        cartEdit.textContent =
+            'Done';
+
+
+        updateSelectedCartTotal();
+
+    }else{
+
+        cartDrawer.classList.remove(
+            'edit-mode'
+        );
+
+
+        cartEdit.textContent =
+            'Edit';
+
+
+        deleteSelectedBtn.disabled =
+            true;
+
+    }
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+let notifications = [
+
+    {
+        id:'n1',
+
+        type:'payment',
+
+        category:'Payment',
+
+        title:'Payment received',
+
+        message:
+            'Your payment for Order #FC-1032 has been confirmed.',
+
+        time:'2 hours ago',
+
+        read:false
+    },
+
+
+    {
+        id:'n2',
+
+        type:'booking',
+
+        category:'Booking',
+
+        title:'Booking confirmed',
+
+        message:
+            'Your Bath appointment has been confirmed.',
+
+        time:'1 day ago',
+
+        read:true
+    }
+
+];
+
+
+let activeFilter = 'all';
+
+
+const notifList =
+    document.getElementById(
+        'notifList'
+    );
+
+
+const notifBadge =
+    document.getElementById(
+        'bottomNotifBadge'
+    );
+
+
+const notifIcons = {
+
+    payment:`
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+
+            <rect
+                x="2"
+                y="5"
+                width="20"
+                height="14"
+                rx="2">
+            </rect>
+
+
+            <line
+                x1="2"
+                y1="10"
+                x2="22"
+                y2="10">
+            </line>
+
+        </svg>
+
+    `,
+
+
+    booking:`
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+
+            <rect
+                x="3"
+                y="4"
+                width="18"
+                height="18"
+                rx="2">
+            </rect>
+
+
+            <line
+                x1="16"
+                y1="2"
+                x2="16"
+                y2="6">
+            </line>
+
+
+            <line
+                x1="8"
+                y1="2"
+                x2="8"
+                y2="6">
+            </line>
+
+
+            <line
+                x1="3"
+                y1="10"
+                x2="21"
+                y2="10">
+            </line>
+
+        </svg>
+
+    `
+
+};
+
+
+function renderNotifications(){
+
+    const unread =
+        notifications.filter(
+            item =>
+                !item.read
+        ).length;
+
+
+    if(unread > 0){
+
+        notifBadge.textContent =
+            unread;
+
+
+        notifBadge.style.display =
+            'flex';
+
+    }else{
+
+        notifBadge.style.display =
+            'none';
+
+    }
+
+
+    document.getElementById(
+        'tabCountAll'
+    ).textContent =
+        notifications.length;
+
+
+    const visible =
+        notifications.filter(item => {
+
+            if(activeFilter === 'unread')
+                return !item.read;
+
+            if(activeFilter === 'read')
+                return item.read;
+
+            return true;
+
+        });
+
+
+    notifList.innerHTML =
+
+        visible.length
+
+            ?
+
+        visible.map(item => `
+
+            <div
+                class="notif-item ${item.read ? '' : 'unread'}"
+                data-id="${item.id}">
+
+
+                <div
+                    class="notif-icon ${item.type}">
+
+                    ${notifIcons[item.type]}
+
+                </div>
+
+
+                <div class="notif-body">
+
+                    <div class="notif-title">
+
+                        ${item.title}
+
+                    </div>
+
+
+                    <div class="notif-meta">
+
+                        <span>${item.time}</span>
+
+                        <span class="dot-sep"></span>
+
+                        <span>${item.category}</span>
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    item.read
+                        ? ''
+                        : '<div class="notif-unread-dot"></div>'
+                }
+
+            </div>
+
+        `).join('')
+
+            :
+
+        `
+
+            <div class="notif-empty">
+
+                ${
+                    activeFilter === 'unread'
+                        ? "You're all caught up"
+                        : activeFilter === 'read'
+                            ? 'No read notifications yet'
+                            : 'No notifications yet'
+                }
+
+            </div>
+
+        `;
+
+}
+
+
+/* =====================================================
+   FILTER TABS
+===================================================== */
+
+document
+    .getElementById(
+        'notifTabs'
+    )
+    .addEventListener(
+        'click',
+        event => {
+
+            const tab =
+                event.target.closest(
+                    '.notif-tab'
+                );
+
+
+            if(!tab)
+                return;
+
+
+            document
+                .querySelectorAll(
+                    '.notif-tab'
+                )
+                .forEach(
+                    el =>
+                        el.classList.remove('active')
+                );
+
+
+            tab.classList.add('active');
+
+
+            activeFilter =
+                tab.dataset.filter;
+
+
+            renderNotifications();
+
+        }
+    );
+
+
+/* MARK ALL READ */
+
+document
+    .getElementById(
+        'notifMarkAllRead'
+    )
+    .addEventListener(
+        'click',
+        () => {
+
+            notifications.forEach(
+                item =>
+                    item.read = true
+            );
+
+
+            renderNotifications();
+
+        }
+    );
+
+
+/* INDIVIDUAL NOTIFICATION */
+
+notifList.addEventListener(
+    'click',
+    event => {
+
+        const item =
+            event.target.closest(
+                '.notif-item'
+            );
+
+
+        if(!item)
+            return;
+
+
+        const notification =
+            notifications.find(
+                n =>
+                    n.id ===
+                    item.dataset.id
+            );
+
+
+        if(notification){
+
+            notification.read =
+                true;
+
+
+            renderNotifications();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+renderNotifications();
+
+updateCartBadge();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>My Purchases - FurryCorner</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+    --blue:#7BB8F0;
+    --blue-dark:#5CA3E8;
+
+    --cream:#FCE3C0;
+    --cream-light:#FDEEDA;
+
+    --ink:#1F2430;
+
+    --white:#ffffff;
+
+    --gray:#777;
+
+    --border:#e5e5e5;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+body{
+
+    font-family:'Nunito',sans-serif;
+
+    color:var(--ink);
+
+    background:var(--cream);
+
+    min-height:100vh;
+
+    padding-bottom:80px;
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+/* =====================================================
+   MOBILE HEADER
+===================================================== */
+
+.mobile-header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:60px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.06);
+
+}
+
+
+.back-button{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    background:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+}
+
+
+.back-button svg{
+
+    width:23px;
+
+    height:23px;
+
+}
+
+
+.mobile-header-title{
+
+    flex:1;
+
+    text-align:center;
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+
+.header-spacer{
+
+    width:40px;
+
+}
+
+
+/* =====================================================
+   STATUS NAVIGATION
+===================================================== */
+
+.status-navigation{
+
+    background:white;
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+}
+
+
+.status-navigation::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+.status-tab{
+
+    position:relative;
+
+    flex:0 0 auto;
+
+    min-width:90px;
+
+    padding:15px 12px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:#777;
+
+}
+
+
+.status-tab.active{
+
+    color:var(--blue-dark);
+
+}
+
+
+.status-tab.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:18px;
+
+    right:18px;
+
+    bottom:0;
+
+    height:3px;
+
+    background:var(--blue-dark);
+
+    border-radius:5px 5px 0 0;
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:18px 14px 30px;
+
+}
+
+
+.page-heading{
+
+    margin-bottom:15px;
+
+}
+
+
+.page-heading h1{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:26px;
+
+    font-weight:800;
+
+}
+
+
+.page-heading p{
+
+    font-size:13px;
+
+    color:#777;
+
+    margin-top:2px;
+
+}
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+.orders-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+/* =====================================================
+   ORDER CARD
+===================================================== */
+
+.order-card{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:17px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.05);
+
+}
+
+
+.order-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding-bottom:13px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+.order-number{
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+
+.order-date{
+
+    font-size:11px;
+
+    color:#888;
+
+    margin-top:3px;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+}
+
+
+.status.pending{
+
+    background:#fff3cd;
+
+    color:#9a7200;
+
+}
+
+
+.status.processing{
+
+    background:#e4f2ff;
+
+    color:#3279b9;
+
+}
+
+
+.status.shipped{
+
+    background:#e9e2ff;
+
+    color:#6743a5;
+
+}
+
+
+.status.delivered{
+
+    background:#e2f7ed;
+
+    color:#27845a;
+
+}
+
+
+.status.cancelled{
+
+    background:#ffe5e5;
+
+    color:#c23b3b;
+
+}
+
+
+/* =====================================================
+   ORDER BODY
+===================================================== */
+
+.order-body{
+
+    padding:14px 0;
+
+}
+
+
+.order-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:7px;
+
+}
+
+
+.order-info-label{
+
+    font-size:12px;
+
+    color:#777;
+
+}
+
+
+.order-info-value{
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+
+.order-total{
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+
+/* =====================================================
+   ORDER BOTTOM
+===================================================== */
+
+.order-bottom{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding-top:13px;
+
+    border-top:1px solid var(--border);
+
+}
+
+
+.item-count{
+
+    font-size:12px;
+
+    color:#777;
+
+}
+
+
+.view-button{
+
+    border:none;
+
+    background:var(--blue);
+
+    color:white;
+
+    padding:9px 14px;
+
+    border-radius:8px;
+
+    font-family:'Nunito',sans-serif;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.view-button:active{
+
+    transform:scale(.97);
+
+}
+
+
+.view-button:hover{
+
+    background:var(--blue-dark);
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-orders{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:55px 20px;
+
+    text-align:center;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.05);
+
+}
+
+
+.empty-icon{
+
+    width:60px;
+
+    height:60px;
+
+    margin:0 auto 15px;
+
+    border-radius:50%;
+
+    background:var(--cream-light);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.empty-icon svg{
+
+    width:30px;
+
+    height:30px;
+
+}
+
+
+.empty-orders h3{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+
+.empty-orders p{
+
+    color:#888;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+
+}
+
+
+.shop-button{
+
+    display:inline-block;
+
+    background:var(--blue);
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.shop-button:hover{
+
+    background:var(--blue-dark);
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:45px 20px;
+
+    text-align:center;
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+}
+
+
+.error-box h3{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:21px;
+
+    margin-bottom:5px;
+
+}
+
+
+.error-box p{
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   MOBILE BOTTOM NAV
+===================================================== */
+
+.mobile-bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:68px;
+
+    background:white;
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-around;
+
+    z-index:2000;
+
+}
+
+
+.bottom-nav-item{
+
+    position:relative;
+
+    flex:1;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:3px;
+
+    color:#777;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.bottom-nav-item svg{
+
+    width:21px;
+
+    height:21px;
+
+}
+
+
+.bottom-nav-item.active{
+
+    color:var(--blue-dark);
+
+}
+
+
+.bottom-notif-badge{
+
+    position:absolute;
+
+    top:9px;
+
+    margin-left:20px;
+
+    min-width:15px;
+
+    height:15px;
+
+    padding:0 4px;
+
+    border-radius:20px;
+
+    background:#ef5b6b;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:751px){
+
+    body{
+
+        padding-bottom:0;
+
+    }
+
+
+    .mobile-header{
+
+        display:none;
+
+    }
+
+
+    .status-navigation{
+
+        display:none;
+
+    }
+
+
+    .page{
+
+        padding-top:45px;
+
+    }
+
+
+    .mobile-bottom-nav{
+
+        display:none;
+
+    }
+
+
+    .page-heading h1{
+
+        font-size:34px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MOBILE HEADER
+===================================================== -->
+
+<header class="mobile-header">
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="goBack()"
+        aria-label="Go back">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M19 12H5"></path>
+
+            <path d="M12 19l-7-7 7-7"></path>
+
+        </svg>
+
+    </button>
+
+
+    <div class="mobile-header-title">
+
+        My Purchases
+
+    </div>
+
+
+    <div class="header-spacer"></div>
+
+</header>
+
+
+<!-- =====================================================
+     STATUS NAVIGATION
+===================================================== -->
+
+<nav class="status-navigation">
+
+    <a
+        href="purchase-status.html?status=pay"
+        class="status-tab"
+        data-status="pay">
+
+        To Pay
+
+    </a>
+
+
+    <a
+        href="purchase-status.html?status=ship"
+        class="status-tab"
+        data-status="ship">
+
+        To Ship
+
+    </a>
+
+
+    <a
+        href="purchase-status.html?status=receive"
+        class="status-tab"
+        data-status="receive">
+
+        To Receive
+
+    </a>
+
+
+    <a
+        href="purchase-status.html?status=rate"
+        class="status-tab"
+        data-status="rate">
+
+        To Rate
+
+    </a>
+
+
+    <a
+        href="purchase-status.html?status=history"
+        class="status-tab"
+        data-status="history">
+
+        History
+
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
+
+<main class="page">
+
+
+    <div class="page-heading">
+
+        <h1 id="pageTitle">
+
+            My Purchases
+
+        </h1>
+
+
+        <p id="pageSubtitle">
+
+            View your orders and their current status.
+
+        </p>
+
+    </div>
+
+
+    <div
+        class="orders-container"
+        id="ordersContainer">
+
+        <div class="loading">
+
+            Loading your orders...
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="mobile-bottom-nav">
+
+
+    <!-- HOME -->
+
+    <a
+        href="index.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M3 10.5L12 3l9 7.5"></path>
+
+            <path d="M5 9.5V21h14V9.5"></path>
+
+            <path d="M9 21v-6h6v6"></path>
+
+        </svg>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <!-- SERVICES -->
+
+    <a
+        href="services.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M5 8h14l1 13H4L5 8z"></path>
+
+            <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+        </svg>
+
+        <span>
+            Services
+        </span>
+
+    </a>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <a
+        href="notif.html"
+        class="bottom-nav-item">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path
+                d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9">
+            </path>
+
+            <path
+                d="M13.73 21a2 2 0 01-3.46 0">
+            </path>
+
+        </svg>
+
+        <span>
+            Notifications
+        </span>
+
+        <span
+            class="bottom-notif-badge"
+            id="bottomNotifBadge"
+            style="display:none;">
+
+            0
+
+        </span>
+
+    </a>
+
+
+    <!-- PROFILE -->
+
+    <a
+        href="profile.html"
+        class="bottom-nav-item active">
+
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <circle
+                cx="12"
+                cy="8"
+                r="4">
+            </circle>
+
+            <path
+                d="M4 21c0-4 4-6 8-6s8 2 8 6">
+            </path>
+
+        </svg>
+
+        <span>
+            Me
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   GET CURRENT STATUS
+===================================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+let currentStatus =
+    urlParams.get("status") || "history";
+
+
+/* =====================================================
+   LOGGED-IN USER
+===================================================== */
+
+let loggedUser = null;
+
+
+try{
+
+    loggedUser =
+        JSON.parse(
+            localStorage.getItem(
+                "loggedInUser"
+            )
+        );
+
+}catch(error){
+
+    loggedUser = null;
+
+}
+
+
+/*
+ * If there is no logged-in user,
+ * return to signin.
+ */
+
+if(
+    !loggedUser ||
+    !loggedUser.id
+){
+
+    window.location.href =
+        "signin.html?return=checkout";
+
+}
+
+
+/* =====================================================
+   PAGE TITLES
+===================================================== */
+
+const statusTitles = {
+
+    pay:{
+
+        title:"To Pay",
+
+        subtitle:
+            "Orders waiting for payment."
+
+    },
+
+
+    ship:{
+
+        title:"To Ship",
+
+        subtitle:
+            "Orders being prepared for shipment."
+
+    },
+
+
+    receive:{
+
+        title:"To Receive",
+
+        subtitle:
+            "Orders that have been shipped."
+
+    },
+
+
+    rate:{
+
+        title:"To Rate",
+
+        subtitle:
+            "Orders that have been delivered."
+
+    },
+
+
+    history:{
+
+        title:"Purchase History",
+
+        subtitle:
+            "View all of your previous orders."
+
+    }
+
+};
+
+
+const selectedTitle =
+    statusTitles[currentStatus]
+        || statusTitles.history;
+
+
+document.getElementById(
+    "pageTitle"
+).textContent =
+    selectedTitle.title;
+
+
+document.getElementById(
+    "pageSubtitle"
+).textContent =
+    selectedTitle.subtitle;
+
+
+/* =====================================================
+   ACTIVE TAB
+===================================================== */
+
+document
+    .querySelectorAll(".status-tab")
+    .forEach(tab => {
+
+        if(
+            tab.dataset.status ===
+            currentStatus
+        ){
+
+            tab.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+function goBack(){
+
+    if(
+        document.referrer &&
+        document.referrer.includes(
+            window.location.hostname
+        )
+    ){
+
+        window.history.back();
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
+/* =====================================================
+   LOAD ORDERS
+===================================================== */
+
+function loadOrders(){
+
+    if(
+        !loggedUser ||
+        !loggedUser.id
+    ){
+
+        return;
+
+    }
+
+
+    fetch(
+        "http://localhost/furrycorner_api/getOrder.php?user_id=" +
+        encodeURIComponent(
+            loggedUser.id
+        )
+    )
+
+    .then(response => {
+
+        if(!response.ok){
+
+            throw new Error(
+                "Server returned " +
+                response.status
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(data => {
+
+        console.log(
+            "Purchase status orders:",
+            data
+        );
+
+
+        if(!data.success){
+
+            showError(
+                data.message ||
+                "Unable to load your orders."
+            );
+
+            return;
+
+        }
+
+
+        const orders =
+            Array.isArray(data.orders)
+                ? data.orders
+                : [];
+
+
+        const filteredOrders =
+            filterOrders(
+                orders
+            );
+
+
+        renderOrders(
+            filteredOrders
+        );
+
+    })
+
+    .catch(error => {
+
+        console.error(
+            "Purchase status error:",
+            error
+        );
+
+
+        showError(
+            "Please try again later."
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTER ORDERS
+===================================================== */
+
+function filterOrders(orders){
+
+    /*
+     * History shows everything.
+     */
+
+    if(
+        currentStatus ===
+        "history"
+    ){
+
+        return orders;
+
+    }
+
+
+    return orders.filter(
+        order => {
+
+            const status =
+                String(
+                    order.status ||
+                    ""
+                ).toLowerCase();
+
+
+            /*
+             * TO PAY
+             *
+             * Pending orders.
+             */
+
+            if(
+                currentStatus ===
+                "pay"
+            ){
+
+                return status ===
+                    "pending";
+
+            }
+
+
+            /*
+             * TO SHIP
+             *
+             * Processing orders.
+             */
+
+            if(
+                currentStatus ===
+                "ship"
+            ){
+
+                return status ===
+                    "processing";
+
+            }
+
+
+            /*
+             * TO RECEIVE
+             *
+             * Shipped orders.
+             */
+
+            if(
+                currentStatus ===
+                "receive"
+            ){
+
+                return status ===
+                    "shipped";
+
+            }
+
+
+            /*
+             * TO RATE
+             *
+             * Delivered orders.
+             */
+
+            if(
+                currentStatus ===
+                "rate"
+            ){
+
+                return status ===
+                    "delivered";
+
+            }
+
+
+            return false;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders(
+    orders
+){
+
+    const container =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+
+    if(
+        !orders ||
+        orders.length === 0
+    ){
+
+        renderEmptyState();
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        orders
+            .map(
+                order =>
+                    createOrderCard(
+                        order
+                    )
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   CREATE ORDER CARD
+===================================================== */
+
+function createOrderCard(
+    order
+){
+
+    const status =
+        String(
+            order.status ||
+            "Pending"
+        );
+
+
+    const statusClass =
+        status
+            .toLowerCase()
+            .replace(
+                /\s+/g,
+                "-"
+            );
+
+
+    const itemCount =
+        Array.isArray(order.items)
+            ? order.items.reduce(
+                (total, item) =>
+                    total +
+                    (Number(item.quantity) || 0),
+                0
+            )
+            : 0;
+
+
+    return `
+
+        <article
+            class="order-card">
+
+
+            <div
+                class="order-top">
+
+
+                <div>
+
+                    <div
+                        class="order-number">
+
+                        Order #${escapeHTML(
+                            order.order_id
+                        )}
+
+                    </div>
+
+
+                    <div
+                        class="order-date">
+
+                        ${formatDate(
+                            order.order_date
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="status ${statusClass}">
+
+                    ${escapeHTML(
+                        status
+                    )}
+
+                </span>
+
+
+            </div>
+
+
+            <div
+                class="order-body">
+
+
+                <div
+                    class="order-info-row">
+
+                    <span
+                        class="order-info-label">
+
+                        Items
+
+                    </span>
+
+
+                    <span
+                        class="order-info-value">
+
+                        ${itemCount}
+                        ${
+                            itemCount === 1
+                                ? "item"
+                                : "items"
+                        }
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="order-info-row">
+
+                    <span
+                        class="order-info-label">
+
+                        Total
+
+                    </span>
+
+
+                    <span
+                        class="order-total">
+
+                        ₱${formatPrice(
+                            order.total_amount
+                        )}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="order-bottom">
+
+
+                <span
+                    class="item-count">
+
+                    Order #${escapeHTML(
+                        order.order_id
+                    )}
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="view-button"
+                    onclick="viewOrder(
+                        ${Number(
+                            order.order_id
+                        )}
+                    )">
+
+                    View Order
+
+                </button>
+
+            </div>
+
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+function renderEmptyState(){
+
+    const messages = {
+
+        pay:{
+            title:"No orders to pay",
+            message:
+                "You don't have any pending orders."
+        },
+
+
+        ship:{
+            title:"No orders to ship",
+            message:
+                "You don't have any orders being prepared."
+        },
+
+
+        receive:{
+            title:"No orders to receive",
+            message:
+                "You don't have any shipped orders."
+        },
+
+
+        rate:{
+            title:"No orders to rate",
+            message:
+                "You don't have any delivered orders waiting for a rating."
+        },
+
+
+        history:{
+            title:"No orders yet",
+            message:
+                "You haven't placed any orders yet."
+        }
+
+    };
+
+
+    const message =
+        messages[currentStatus]
+        || messages.history;
+
+
+    document.getElementById(
+        "ordersContainer"
+    ).innerHTML = `
+
+        <div
+            class="empty-orders">
+
+
+            <div
+                class="empty-icon">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+
+                    <path
+                        d="M3 6h18v14H3z">
+                    </path>
+
+                    <path
+                        d="M7 6V4h10v2">
+                    </path>
+
+                    <path
+                        d="M8 10h8">
+                    </path>
+
+                    <path
+                        d="M8 14h5">
+                    </path>
+
+                </svg>
+
+            </div>
+
+
+            <h3>
+
+                ${message.title}
+
+            </h3>
+
+
+            <p>
+
+                ${message.message}
+
+            </p>
+
+
+            <a
+                href="AllProducts.php"
+                class="shop-button">
+
+                Start Shopping
+
+            </a>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(
+    message
+){
+
+    document.getElementById(
+        "ordersContainer"
+    ).innerHTML = `
+
+        <div
+            class="error-box">
+
+
+            <h3>
+
+                Unable to load orders
+
+            </h3>
+
+
+            <p>
+
+                ${escapeHTML(
+                    message
+                )}
+
+            </p>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   VIEW ORDER
+===================================================== */
+
+function viewOrder(
+    orderId
+){
+
+    window.location.href =
+        "OrderDetails.php?order_id=" +
+        encodeURIComponent(
+            orderId
+        );
+
+}
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(
+    value
+){
+
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "en-PH",
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(
+    date
+){
+
+    if(!date){
+
+        return "";
+
+    }
+
+
+    const parsedDate =
+        new Date(date);
+
+
+    if(
+        Number.isNaN(
+            parsedDate.getTime()
+        )
+    ){
+
+        return "";
+
+    }
+
+
+    return parsedDate.toLocaleDateString(
+        "en-PH",
+        {
+            month:"long",
+            day:"numeric",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   CART BADGE
+===================================================== */
+
+function updateCartBadge(){
+
+    /*
+     * Cart is intentionally still
+     * stored in localStorage,
+     * based on your existing setup.
+     */
+
+    let cart = [];
+
+
+    try{
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "cart"
+                )
+            ) || [];
+
+    }
+    catch(error){
+
+        cart = [];
+
+    }
+
+
+    const totalItems =
+        cart.reduce(
+            (
+                total,
+                item
+            ) => {
+
+                return total +
+                    (
+                        Number(
+                            item.quantity
+                        ) || 0
+                    );
+
+            },
+            0
+        );
+
+
+    const badge =
+        document.getElementById(
+            "bottomNotifBadge"
+        );
+
+
+    /*
+     * No cart badge is displayed
+     * in this page's bottom nav.
+     *
+     * Keep this function here so
+     * the cart remains compatible
+     * with the rest of the website.
+     */
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateCartBadge();
+
+loadOrders();
+
+</script>
+
+
+</body>
+
+</html>

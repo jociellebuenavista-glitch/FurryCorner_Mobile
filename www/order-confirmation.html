@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Order Confirmed - FurryCorner</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+:root{
+
+    --blue:#7BB8F0;
+    --blue-dark:#5CA3E8;
+
+    --cream:#FCE3C0;
+
+    --ink:#1F2430;
+
+    --white:#ffffff;
+
+    --gray:#777;
+
+    --border:#e5e5e5;
+
+    --panel:#f7f8fa;
+
+}
+
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+body{
+
+    font-family:'Nunito',sans-serif;
+
+    background:var(--cream);
+
+    color:var(--ink);
+
+    min-height:100vh;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.06);
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-family:'Baloo 2',cursive;
+
+    font-weight:800;
+
+    font-size:22px;
+
+    color:var(--blue-dark);
+
+    text-decoration:none;
+
+}
+
+
+.logo img{
+
+    width:40px;
+
+    height:40px;
+
+    object-fit:contain;
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+
+.confirmation-wrap{
+
+    padding:25px 0 50px;
+
+}
+
+
+/* =========================
+   MAIN BOX
+========================= */
+
+.box{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.05);
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.confirmation-header{
+
+    margin-bottom:25px;
+
+}
+
+
+.confirmation-header h2{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+
+.confirmation-check-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-weight:800;
+
+    font-size:16px;
+
+    margin-bottom:8px;
+
+}
+
+
+.check-icon{
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#3fb27f;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+}
+
+
+.confirmation-note{
+
+    color:var(--gray);
+
+    font-size:14px;
+
+}
+
+
+/* =========================
+   BOXES
+========================= */
+
+.confirm-box{
+
+    background:white;
+
+    border:1.5px solid var(--border);
+
+    border-radius:14px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+}
+
+
+.confirm-box h3{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:19px;
+
+    margin-bottom:13px;
+
+}
+
+
+.confirm-box h4{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    margin-bottom:4px;
+
+}
+
+
+.confirm-box p{
+
+    font-size:14px;
+
+    margin-bottom:14px;
+
+    line-height:1.5;
+
+}
+
+
+.confirm-box p:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+/* =========================
+   ORDER ID
+========================= */
+
+.confirm-order-id{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.confirmation-summary-box{
+
+    background:var(--panel);
+
+}
+
+
+.confirmation-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+.confirmation-item img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:8px;
+
+    background:white;
+
+    object-fit:contain;
+
+    padding:5px;
+
+    flex-shrink:0;
+
+}
+
+
+.confirmation-item-info{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+.confirmation-item-name{
+
+    font-weight:800;
+
+    font-size:14px;
+
+}
+
+
+.confirmation-item-quantity{
+
+    color:var(--gray);
+
+    font-size:13px;
+
+    margin-top:3px;
+
+}
+
+
+.confirmation-item-price{
+
+    font-weight:800;
+
+    font-size:14px;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================
+   TOTALS
+========================= */
+
+.confirmation-totals{
+
+    margin-top:14px;
+
+    padding-top:14px;
+
+    border-top:1px solid var(--border);
+
+}
+
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+}
+
+
+.summary-row.total{
+
+    border-top:1px solid var(--border);
+
+    padding-top:14px;
+
+    margin-top:5px;
+
+    font-size:19px;
+
+    font-weight:800;
+
+}
+
+
+.summary-row.total span:last-child{
+
+    color:var(--blue-dark);
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.shop-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:9px;
+
+    background:var(--blue);
+
+    color:white;
+
+    font-weight:800;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    border:none;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+
+.shop-btn:hover{
+
+    background:var(--blue-dark);
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.confirmation-empty{
+
+    text-align:center;
+
+    padding:50px 10px;
+
+}
+
+
+.confirmation-empty h2{
+
+    font-family:'Baloo 2',cursive;
+
+    font-size:25px;
+
+    margin-bottom:10px;
+
+}
+
+
+.confirmation-empty p{
+
+    color:var(--gray);
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .container{
+
+        padding:12px;
+
+    }
+
+
+    .confirmation-wrap{
+
+        padding-top:15px;
+
+    }
+
+
+    .box{
+
+        padding:16px;
+
+    }
+
+
+    .confirmation-header h2{
+
+        font-size:27px;
+
+    }
+
+
+    .confirm-box{
+
+        padding:16px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="top-header">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <img
+            src="images/logo.png"
+            alt="FurryCorner logo"
+        >
+
+        FurryCorner
+
+    </a>
+
+</div>
+
+
+<!-- =========================
+     PAGE
+========================= -->
+
+<main class="container">
+
+    <div class="confirmation-wrap">
+
+        <div
+            class="box"
+            id="confirmationRoot"
+        >
+
+            <div class="confirmation-empty">
+
+                <h2>
+                    Loading your order...
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   FORMAT PESO
+===================================================== */
+
+function peso(number){
+
+    return '₱' +
+        Number(number || 0)
+            .toLocaleString(
+                'en-PH',
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+
+}
+
+
+/* =====================================================
+   GET LAST ORDER ID
+===================================================== */
+/* =====================================================
+   GET LAST ORDER ID + LOGGED-IN USER
+===================================================== */
+
+const orderId =
+    localStorage.getItem(
+        'lastOrderId'
+    );
+
+
+const loggedInUser =
+    JSON.parse(
+        localStorage.getItem(
+            'loggedInUser'
+        ) || 'null'
+    );
+
+
+const userId =
+    loggedInUser
+        ? Number(loggedInUser.user_id || loggedInUser.id || 0)
+        : 0;
+
+
+console.log("Last Order ID:", orderId);
+console.log("Logged In User:", loggedInUser);
+console.log("User ID:", userId);
+
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+const root =
+    document.getElementById(
+        'confirmationRoot'
+    );
+
+
+/* =====================================================
+   LOAD ORDER
+===================================================== */
+async function loadOrder(){
+
+    if(!orderId){
+
+        showEmptyOrder(
+            'No recent order ID was found.'
+        );
+
+        return;
+
+    }
+
+
+    console.log('========== LOAD ORDER ==========');
+    console.log('Order ID:', orderId);
+    console.log('User ID:', userId);
+
+
+    try{
+
+        const url =
+            'http://localhost/furrycorner_api/getOrderConfirmation.php'
+            + '?order_id='
+            + encodeURIComponent(orderId)
+            + '&user_id='
+            + encodeURIComponent(userId);
+
+
+        console.log(
+            'Request URL:',
+            url
+        );
+
+
+        const response =
+            await fetch(url);
+
+
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            'RAW SERVER RESPONSE:',
+            responseText
+        );
+
+
+        let data;
+
+        try{
+
+            data =
+                JSON.parse(responseText);
+
+        }catch(error){
+
+            console.error(
+                'Invalid JSON from server:',
+                responseText
+            );
+
+            throw new Error(
+                'Invalid server response'
+            );
+
+        }
+
+
+        console.log(
+            'getOrderConfirmation.php response:',
+            data
+        );
+
+
+        if(!data.success){
+
+            showEmptyOrder(
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * Depending on the PHP response,
+         * the order may be inside data.order.
+         */
+
+        const order =
+            data.order;
+
+
+        if(!order){
+
+            console.error(
+                'No order object returned:',
+                data
+            );
+
+            showEmptyOrder(
+                'Order information was not returned by the server.'
+            );
+
+            return;
+
+        }
+
+
+        renderOrder(order);
+
+
+    }catch(error){
+
+        console.error(
+            'Order loading error:',
+            error
+        );
+
+
+        root.innerHTML = `
+
+            <div class="confirmation-empty">
+
+                <h2>
+                    Unable to load order
+                </h2>
+
+                <p>
+                    ${error.message}
+                </p>
+
+                <button
+                    class="shop-btn"
+                    onclick="loadOrder()"
+                >
+                    Try Again
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   EMPTY ORDER
+===================================================== */
+
+function showEmptyOrder(message){
+
+    root.innerHTML = `
+
+        <div class="confirmation-empty">
+
+            <h2>
+                No recent order found
+            </h2>
+
+            <p>
+                ${
+                    message ||
+                    "We couldn't find your recent order."
+                }
+            </p>
+
+            <a
+                href="index.html"
+                class="shop-btn"
+            >
+                Continue Shopping
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   RENDER ORDER
+===================================================== */
+
+function renderOrder(order){
+
+    const items =
+        order.items || [];
+
+
+    const itemCount =
+        items.reduce(
+            (sum,item) =>
+                sum +
+                Number(item.quantity || 0),
+            0
+        );
+
+
+    const addressLine = [
+
+        order.address,
+
+        order.city,
+
+        order.province,
+
+        order.postal_code,
+
+        'Philippines'
+
+    ]
+    .filter(Boolean)
+    .join(', ');
+
+
+    const itemsHtml =
+        items.map(item => {
+
+            return `
+
+                <div class="confirmation-item">
+
+                    <img
+                        src="images/product-${item.product_id}.png"
+                        alt="${item.product_name}"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <div class="confirmation-item-info">
+
+                        <div class="confirmation-item-name">
+
+                            ${item.product_name}
+
+                        </div>
+
+                        <div class="confirmation-item-quantity">
+
+                            Quantity:
+                            ${item.quantity}
+
+                        </div>
+
+                    </div>
+
+                    <div class="confirmation-item-price">
+
+                        ${peso(item.item_total)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        })
+        .join('');
+
+
+    root.innerHTML = `
+
+        <!-- HEADER -->
+
+        <div class="confirmation-header">
+
+            <h2>
+                Thank you, ${order.first_name || 'friend'}!
+            </h2>
+
+            <div class="confirmation-check-row">
+
+                <div class="check-icon">
+                    ✓
+                </div>
+
+                Your order is confirmed.
+
+            </div>
+
+            <p class="confirmation-note">
+
+                Your order has been successfully placed.
+
+            </p>
+
+        </div>
+
+
+        <!-- ORDER ID -->
+
+        <div class="confirm-box">
+
+            <p class="confirm-order-id">
+
+                Order #${order.order_id}
+
+            </p>
+
+        </div>
+
+
+        <!-- CUSTOMER INFORMATION -->
+
+        <div class="confirm-box">
+
+            <h3>
+                Customer Information
+            </h3>
+
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                ${order.phone || '-'}
+            </p>
+
+
+            <h4>
+                Shipping Address
+            </h4>
+
+            <p>
+                ${addressLine || '-'}
+            </p>
+
+
+            <h4>
+                Shipping Method
+            </h4>
+
+            <p>
+                Standard Delivery
+            </p>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="confirm-box">
+
+            <h3>
+                Payment Method
+            </h3>
+
+            <p>
+                ${formatPayment(order.payment_method)}
+            </p>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="confirm-box confirmation-summary-box">
+
+            <h3>
+
+                Order Summary
+                (${itemCount}
+                item${itemCount === 1 ? '' : 's'})
+
+            </h3>
+
+
+            <div>
+
+                ${itemsHtml}
+
+            </div>
+
+
+            <div class="confirmation-totals">
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span>
+                        ${peso(order.subtotal)}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Shipping
+                    </span>
+
+                    <span>
+                        ${peso(order.shipping_fee)}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span>
+                        ${peso(order.total_amount)}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTINUE SHOPPING -->
+
+        <a
+            href="index.html"
+            class="shop-btn"
+        >
+
+            Continue Shopping
+
+        </a>
+
+    `;
+
+}
+
+
+/* =====================================================
+   PAYMENT DISPLAY
+===================================================== */
+
+function formatPayment(payment){
+
+    if(!payment){
+
+        return '-';
+
+    }
+
+
+    const value =
+        payment.toLowerCase();
+
+
+    if(value === 'cod'){
+
+        return 'Cash on Delivery';
+
+    }
+
+
+    if(value === 'gcash'){
+
+        return 'GCash';
+
+    }
+
+
+    if(value === 'card'){
+
+        return 'Credit / Debit Card';
+
+    }
+
+
+    return payment;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadOrder();
+
+</script>
+
+</body>
+
+</html>
