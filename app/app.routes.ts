@@ -1,0 +1,25 @@
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  { path: 'about', loadComponent: () => import('./pages/about/about.page').then(m => m.AboutPage) },
+  { path: 'account-security', loadComponent: () => import('./pages/account-security/account-security.page').then(m => m.AccountSecurityPage) },
+  { path: 'checkout', loadComponent: () => import('./pages/checkout/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'community-rules', loadComponent: () => import('./pages/community-rules/community-rules.page').then(m => m.CommunityRulesPage) },
+  { path: 'help-center', loadComponent: () => import('./pages/help-center/help-center.page').then(m => m.HelpCenterPage) },
+  { path: '', loadComponent: () => import('./pages/index/index.page').then(m => m.IndexPage) },
+  { path: 'index', redirectTo: '', pathMatch: 'full' },
+  { path: 'language', loadComponent: () => import('./pages/language/language.page').then(m => m.LanguagePage) },
+  { path: 'my-addresses', loadComponent: () => import('./pages/my-addresses/my-addresses.page').then(m => m.MyAddressesPage) },
+  { path: 'notif', loadComponent: () => import('./pages/notif/notif.page').then(m => m.NotifPage) },
+  { path: 'notification-settings', loadComponent: () => import('./pages/notification-settings/notification-settings.page').then(m => m.NotificationSettingsPage) },
+  { path: 'order-confirmation', loadComponent: () => import('./pages/order-confirmation/order-confirmation.page').then(m => m.OrderConfirmationPage) },
+  { path: 'payment-methods', loadComponent: () => import('./pages/payment-methods/payment-methods.page').then(m => m.PaymentMethodsPage) },
+  { path: 'policies', loadComponent: () => import('./pages/policies/policies.page').then(m => m.PoliciesPage) },
+  { path: 'privacy-settings', loadComponent: () => import('./pages/privacy-settings/privacy-settings.page').then(m => m.PrivacySettingsPage) },
+  { path: 'profile', loadComponent: () => import('./pages/profile/profile.page').then(m => m.ProfilePage) },
+  { path: 'purchase-status', loadComponent: () => import('./pages/purchase-status/purchase-status.page').then(m => m.PurchaseStatusPage) },
+  { path: 'services', loadComponent: () => import('./pages/services/services.page').then(m => m.ServicesPage) },
+  { path: 'signin', loadComponent: () => import('./pages/signin/signin.page').then(m => m.SigninPage) },
+  { path: 'signup', loadComponent: () => import('./pages/signup/signup.page').then(m => m.SignupPage) },
+  { path: '**', redirectTo: '' },
+];
